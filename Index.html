@@ -2465,20 +2465,11 @@ document.querySelectorAll(
               <input class="bk-input" id="bk-card-name" placeholder="Full name as it appears on card" oninput="bkData.cardName=this.value">
             </div>
             <div class="bk-card-row-full">
-              <label class="bk-label">Card Number</label>
-              <input class="bk-input" id="bk-card-number" placeholder="•••• •••• •••• ••••" maxlength="19" oninput="formatCardNumber(this)">
+              <label class="bk-label">Card Details</label>
+              <div id="card-container"></div>
+              <div id="card-errors" style="color:#c0392b;font-size:0.8rem;margin-top:0.4rem;display:none"></div>
             </div>
-            <div class="bk-card-row">
-              <div>
-                <label class="bk-label">Expiry Date</label>
-                <input class="bk-input" id="bk-card-expiry" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)">
-              </div>
-              <div>
-                <label class="bk-label">CVV</label>
-                <input class="bk-input" id="bk-card-cvv" placeholder="•••" maxlength="4" oninput="bkData.cardCvv=this.value.replace(/\D/g,'').slice(0,4)">
-              </div>
-            </div>
-            <div class="bk-secure-note">🔒 Your card info is kept secure and will only be charged at the time of service.</div>
+            <div class="bk-secure-note">🔒 Payment is processed securely by Square. Your card is charged now to confirm your booking.</div>
           </div>
         </div>
       </div>
@@ -2508,6 +2499,8 @@ document.querySelectorAll(
   </div><!-- /bk-modal -->
 </div><!-- /bk-overlay -->
 
+<!-- Square Web Payments SDK — sandbox for now, swap to https://web.squarecdn.com/v1/square.js for production -->
+<script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
 <script>
 // ── Booking Portal State ────────────────────────────────────────
 var bkCurrentStep = 1;
@@ -2534,33 +2527,79 @@ var bkData = {
   email:        '',
   notes:        '',
   paymentMethod: '',
-  cardName:     '',
-  cardNumber:   '',
-  cardExpiry:   '',
-  cardCvv:      ''
+  cardName:     ''
 };
 
-// ── Airtable Config ─────────────────────────────────────────────
-var AT_TOKEN = 'patzVq7SEQdTUpqjA.c17e8256abd8f36bb41cf530c13a601a40759ff27014a15c2e9f232ce925836a';
-var AT_BASE  = 'appz2DtJwrDFeOVIc';
-var AT_TABLE = 'Directory';
-var AT_URL   = 'https://api.airtable.com/v0/' + AT_BASE + '/' + encodeURIComponent(AT_TABLE);
+// Airtable is no longer called directly from the browser — see
+// netlify/functions/check-availability.js and save-booking.js, which
+// hold the real token server-side.
 
-// ── Fetch booked time slots for a given date from Airtable ──────
+// ── Square Web Payments SDK Config ───────────────────────────────
+// Sandbox values — replace with your real Application ID / Location ID
+// from developer.squareup.com, and swap the <script src> above to the
+// production squarecdn.com URL when you go live.
+var SQUARE_APP_ID      = 'sandbox-sq0idb-cYYVJWvTbhmVa_zIrELwWg';
+var SQUARE_LOCATION_ID = 'LPP05WEMTD2QF';
+
+var squareCard = null;      // holds the initialized Square Card instance
+var squarePayments = null;  // holds the Square payments object
+
+async function initSquareCard() {
+  if (squareCard || !window.Square) return squareCard;
+  try {
+    squarePayments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID);
+    squareCard = await squarePayments.card();
+    await squareCard.attach('#card-container');
+  } catch (e) {
+    console.error('Square card init failed', e);
+    var errBox = document.getElementById('card-errors');
+    if (errBox) {
+      errBox.textContent = 'Payment form failed to load. Please refresh or contact us.';
+      errBox.style.display = 'block';
+    }
+  }
+  return squareCard;
+}
+
+// Charge the card via our Netlify function. Returns a promise that
+// resolves with the payment result, or rejects with an error message.
+async function chargeCardForBooking(amountDollars) {
+  var errBox = document.getElementById('card-errors');
+  if (errBox) errBox.style.display = 'none';
+
+  var card = await initSquareCard();
+  if (!card) throw new Error('Payment form is not ready yet.');
+
+  var tokenResult = await card.tokenize();
+  if (tokenResult.status !== 'OK') {
+    var msg = (tokenResult.errors && tokenResult.errors[0] && tokenResult.errors[0].message)
+      || 'Card could not be verified.';
+    throw new Error(msg);
+  }
+
+  var resp = await fetch('/.netlify/functions/charge-payment', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      sourceId: tokenResult.token,
+      amount: amountDollars,
+      buyerName: bkData.cardName,
+      buyerEmail: bkData.email
+    })
+  });
+  var result = await resp.json();
+  if (!resp.ok || !result.success) {
+    throw new Error(result.error || 'Payment was declined.');
+  }
+  return result;
+}
+
+// ── Fetch booked time slots for a given date via our Netlify function ──
 function fetchBookedSlots(dateStr, callback) {
-  var filter = encodeURIComponent("AND({Date}='" + dateStr + "',{Status}!='Cancelled')");
-  fetch(AT_URL + '?filterByFormula=' + filter + '&fields[]=Time', {
-    headers: { 'Authorization': 'Bearer ' + AT_TOKEN }
-  })
+  fetch('/.netlify/functions/check-availability?date=' + encodeURIComponent(dateStr))
   .then(function(r) { return r.json(); })
   .then(function(data) {
-    var times = [];
-    if (data.records) {
-      data.records.forEach(function(rec) {
-        if (rec.fields && rec.fields.Time) times.push(rec.fields.Time);
-      });
-    }
-    callback(times);
+    callback(data.bookedTimes || []);
   })
   .catch(function() { callback([]); });
 }
@@ -2902,6 +2941,7 @@ function selectPayment(method) {
   if (method === 'card') {
     note.classList.remove('visible');
     cardForm.classList.add('visible');
+    initSquareCard();
   } else {
     cardForm.classList.remove('visible');
     note.classList.add('visible');
@@ -2915,40 +2955,45 @@ function selectPayment(method) {
   }
 }
 
-// ── Card Input Formatters ────────────────────────────────────────
-function formatCardNumber(input) {
-  var val = input.value.replace(/\D/g,'').slice(0,16);
-  input.value = val.replace(/(.{4})/g,'$1 ').trim();
-  bkData.cardNumber = val;
-}
-function formatExpiry(input) {
-  var val = input.value.replace(/\D/g,'').slice(0,4);
-  if (val.length >= 3) val = val.slice(0,2) + ' / ' + val.slice(2);
-  input.value = val;
-  bkData.cardExpiry = val;
-}
-
 // ── Submit ──────────────────────────────────────────────────────
-function submitBooking() {
+async function submitBooking() {
   if (!bkData.firstName || !bkData.lastName) { alert('Please enter your full name.'); return; }
   if (!bkData.phone) { alert('Please enter your phone number.'); return; }
   if (!bkData.email) { alert('Please enter your email address.'); return; }
   if (!bkData.paymentMethod) { alert('Please select a payment method.'); return; }
-  if (bkData.paymentMethod === 'card') {
-    if (!bkData.cardName)   { alert('Please enter the name on your card.'); return; }
-    if (!bkData.cardNumber || bkData.cardNumber.length < 16) { alert('Please enter a valid 16-digit card number.'); return; }
-    if (!bkData.cardExpiry || bkData.cardExpiry.length < 4)  { alert('Please enter your card expiry date.'); return; }
-    if (!bkData.cardCvv || bkData.cardCvv.length < 3)        { alert('Please enter your CVV.'); return; }
+  if (bkData.paymentMethod === 'card' && !bkData.cardName) {
+    alert('Please enter the name on your card.'); return;
   }
 
   var total = bkData.servicePrice + bkData.vehicleXLSurcharge + bkData.addonTotal;
   var payLabel = bkData.paymentMethod === 'cash'  ? '💵 Cash (at service)'
                : bkData.paymentMethod === 'zelle' ? '📲 Zelle (at service)'
-               : '💳 Card ending in ' + (bkData.cardNumber ? bkData.cardNumber.slice(-4) : '••••');
+               : '💳 Card (charged)';
 
-  // Disable button and show loading state
   var nextBtn = document.getElementById('bk-next-btn');
   nextBtn.disabled = true;
+
+  var paymentReceiptId = '';
+
+  // Card bookings: charge FIRST. If the charge fails, we stop here and
+  // never write a Pending booking for a payment that never happened.
+  if (bkData.paymentMethod === 'card') {
+    nextBtn.textContent = 'Processing payment…';
+    try {
+      var paymentResult = await chargeCardForBooking(total);
+      paymentReceiptId = (paymentResult.paymentId || '');
+    } catch (err) {
+      var errBox = document.getElementById('card-errors');
+      if (errBox) {
+        errBox.textContent = err.message || 'Payment failed. Please check your card details and try again.';
+        errBox.style.display = 'block';
+      }
+      nextBtn.disabled = false;
+      nextBtn.textContent = 'Confirm My Booking ✓';
+      return;
+    }
+  }
+
   nextBtn.textContent = 'Saving your booking…';
 
   // Build add-ons string for Airtable
@@ -2956,39 +3001,42 @@ function submitBooking() {
     ? bkData.addons.map(function(a){ return a.name + ' ($' + a.price + ')'; }).join(', ')
     : 'None';
 
-  // POST booking record to Airtable
-  fetch(AT_URL, {
+  // POST booking record via our Netlify function (Airtable token stays server-side)
+  fetch('/.netlify/functions/save-booking', {
     method: 'POST',
-    headers: {
-      'Authorization': 'Bearer ' + AT_TOKEN,
-      'Content-Type': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      fields: {
-        'First Name':     bkData.firstName,
-        'Last Name':      bkData.lastName,
-        'Phone':          bkData.phone,
-        'Email':          bkData.email,
-        'Service':        bkData.service,
-        'Service Type':   bkData.serviceType,
-        'Vehicle Size':   bkData.vehicleSize,
-        'Vehicle Type':   bkData.vehicleType,
-        'Add-Ons':        addonStr,
-        'Date':           bkData.date,
-        'Time':           bkData.time,
-        'Location':       bkData.location,
-        'Address':        bkData.address,
-        'Total ($)':      total,
-        'Payment Method': bkData.paymentMethod,
-        'Notes':          bkData.notes || '',
-        'Status':         'Pending'
-      }
+      'First Name':     bkData.firstName,
+      'Last Name':      bkData.lastName,
+      'Phone':          bkData.phone,
+      'Email':          bkData.email,
+      'Service':        bkData.service,
+      'Service Type':   bkData.serviceType,
+      'Vehicle Size':   bkData.vehicleSize,
+      'Vehicle Type':   bkData.vehicleType,
+      'Add-Ons':        addonStr,
+      'Date':           bkData.date,
+      'Time':           bkData.time,
+      'Location':       bkData.location,
+      'Address':        bkData.address,
+      'Total ($)':      total,
+      'Payment Method': bkData.paymentMethod,
+      'Payment Receipt':paymentReceiptId,
+      'Notes':          bkData.notes || '',
+      'Status':         bkData.paymentMethod === 'card' ? 'Paid' : 'Pending'
     })
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
     if (data.error) {
-      alert('Booking could not be saved: ' + data.error.message + '\nPlease try again or call us directly.');
+      // The charge already went through — don't let the customer think
+      // nothing happened. Surface this as a "call us" case, not a retry,
+      // since retrying would risk a second charge.
+      if (bkData.paymentMethod === 'card') {
+        alert('Your payment succeeded, but we hit an error saving your booking details. Please call us at (800) 123-4567 so we can confirm your appointment manually — your payment is safe.');
+      } else {
+        alert('Booking could not be saved: ' + data.error.message + '\nPlease try again or call us directly.');
+      }
       nextBtn.disabled = false;
       nextBtn.textContent = 'Confirm My Booking ✓';
       return;
@@ -2997,7 +3045,11 @@ function submitBooking() {
     showBookingSuccess(total, payLabel);
   })
   .catch(function() {
-    alert('Connection error. Please try again or call us at (800) 123-4567.');
+    if (bkData.paymentMethod === 'card') {
+      alert('Your payment succeeded, but we could not reach our booking system. Please call us at (800) 123-4567 to confirm your appointment — your payment is safe.');
+    } else {
+      alert('Connection error. Please try again or call us at (800) 123-4567.');
+    }
     nextBtn.disabled = false;
     nextBtn.textContent = 'Confirm My Booking ✓';
   });
