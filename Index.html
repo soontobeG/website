@@ -21,12 +21,12 @@
   --white:   #ffffff;
 
   /* ── Gold accent palette ── */
-  --gold:        #C8922A;
-  --gold-light:  #E0A93A;
-  --gold-dark:   #A67520;
-  --gold-soft:   #FDF6E8;
-  --gold-border: rgba(200,146,42,0.22);
-  --gold-glow:   rgba(200,146,42,0.35);
+  --gold:        #0F766E;
+  --gold-light:  #14B8A6;
+  --gold-dark:   #0B5A54;
+  --gold-soft:   #ECFDF9;
+  --gold-border: rgba(15,118,110,0.20);
+  --gold-glow:   rgba(15,118,110,0.30);
 
   --nav-height:  4.5rem;
   --radius-lg:   1.25rem;
@@ -35,7 +35,7 @@
   --shadow-sm:  0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
   --shadow-md:  0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
   --shadow-lg:  0 12px 40px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.07);
-  --shadow-gold:0 4px 20px rgba(200,146,42,0.35);
+  --shadow-gold:0 4px 20px rgba(15,118,110,0.35);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -48,7 +48,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--gray900);background:#fff;line-
 .promo-bar{
   position:fixed;top:0;left:0;right:0;z-index:1100;
   background:linear-gradient(90deg,#0f1117 0%,#1c2030 40%,#2d1e00 70%,#0f1117 100%);
-  border-bottom:1px solid rgba(200,146,42,0.4);
+  border-bottom:1px solid rgba(15,118,110,0.4);
   padding:0.6rem 1.5rem;
   display:flex;align-items:center;justify-content:center;gap:1.25rem;
   font-size:0.82rem;font-weight:600;letter-spacing:0.01em;
@@ -65,7 +65,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--gray900);background:#fff;line-
 }
 .promo-counter{
   display:flex;align-items:center;gap:0.5rem;
-  background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.3);
+  background:rgba(15,118,110,0.12);border:1px solid rgba(15,118,110,0.3);
   border-radius:2rem;padding:0.2rem 0.75rem;
   font-size:0.78rem;color:rgba(255,255,255,0.85);white-space:nowrap
 }
@@ -133,7 +133,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--gray900);background:#fff;line-
   display:inline-flex;align-items:center;gap:0.75rem;
   background:linear-gradient(135deg,var(--gold-dark),var(--gold));
   border-radius:0.6rem;padding:0.55rem 1.25rem;margin-bottom:1.75rem;
-  box-shadow:0 4px 24px rgba(200,146,42,0.5)
+  box-shadow:0 4px 24px rgba(15,118,110,0.5)
 }
 .hero-promo-ribbon-text{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:800;color:#fff;letter-spacing:0.03em;text-transform:uppercase}
 .hero-promo-ribbon-badge{
@@ -158,9 +158,9 @@ body{font-family:'DM Sans',sans-serif;color:var(--gray900);background:#fff;line-
   background:var(--gold);color:#fff;font-size:1rem;font-weight:800;
   padding:0.9rem 2.1rem;border-radius:0.75rem;border:none;cursor:pointer;
   text-decoration:none;transition:all 0.25s;display:inline-flex;align-items:center;gap:0.5rem;
-  font-family:'Syne',sans-serif;box-shadow:0 6px 24px rgba(200,146,42,0.45)
+  font-family:'Syne',sans-serif;box-shadow:0 6px 24px rgba(15,118,110,0.45)
 }
-.btn-hero-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 10px 32px rgba(200,146,42,0.55)}
+.btn-hero-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 10px 32px rgba(15,118,110,0.55)}
 .btn-hero-outline{
   border:1px solid rgba(255,255,255,0.28);background:rgba(255,255,255,0.06);
   color:#fff;font-size:1rem;font-weight:500;padding:0.9rem 2.1rem;border-radius:0.75rem;
@@ -231,10 +231,10 @@ section{padding:5.5rem 2rem}
 .benefit-num{font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray400);margin-bottom:1.5rem}
 .benefit-card.featured .benefit-num{color:rgba(255,255,255,0.35)}
 .benefit-icon{width:3rem;height:3rem;background:var(--gold-soft);border-radius:0.85rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.25rem}
-.benefit-card.featured .benefit-icon{background:rgba(200,146,42,0.18)}
+.benefit-card.featured .benefit-icon{background:rgba(15,118,110,0.18)}
 .benefit-title{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;color:var(--gray900);margin-bottom:0.6rem}
 .benefit-desc{font-size:0.9rem;color:var(--gray500);line-height:1.65}
-.benefit-accent{position:absolute;bottom:-2rem;right:-2rem;width:8rem;height:8rem;background:radial-gradient(circle,rgba(200,146,42,0.06),transparent);border-radius:50%}
+.benefit-accent{position:absolute;bottom:-2rem;right:-2rem;width:8rem;height:8rem;background:radial-gradient(circle,rgba(15,118,110,0.06),transparent);border-radius:50%}
 
 /* ══════════════════════════════════════
    STATS
@@ -253,11 +253,11 @@ section{padding:5.5rem 2rem}
 .promo-hero-block{
   background:linear-gradient(135deg,var(--gray900) 0%,#2d1e00 50%,var(--gray900) 100%);
   border-radius:var(--radius-2xl);padding:3rem 2.5rem;margin-bottom:3rem;
-  position:relative;overflow:hidden;border:1px solid rgba(200,146,42,0.25)
+  position:relative;overflow:hidden;border:1px solid rgba(15,118,110,0.25)
 }
 .promo-hero-block::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 60% 50%,rgba(200,146,42,0.15),transparent 65%);
+  background:radial-gradient(ellipse at 60% 50%,rgba(15,118,110,0.15),transparent 65%);
   pointer-events:none
 }
 .promo-hero-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
@@ -274,7 +274,7 @@ section{padding:5.5rem 2rem}
 .promo-hero-sub{font-size:0.92rem;color:rgba(255,255,255,0.6);max-width:28rem;line-height:1.65}
 .promo-hero-right{text-align:center;flex-shrink:0}
 .promo-spots-box{
-  background:rgba(200,146,42,0.1);border:2px solid rgba(200,146,42,0.4);
+  background:rgba(15,118,110,0.1);border:2px solid rgba(15,118,110,0.4);
   border-radius:1.25rem;padding:1.5rem 2rem;min-width:16rem
 }
 .promo-spots-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.5);margin-bottom:0.4rem}
@@ -317,8 +317,8 @@ section{padding:5.5rem 2rem}
 }
 .price-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .price-card.featured{
-  background:var(--gray900);border:2px solid rgba(200,146,42,0.5);
-  box-shadow:0 0 0 4px rgba(200,146,42,0.08)
+  background:var(--gray900);border:2px solid rgba(15,118,110,0.5);
+  box-shadow:0 0 0 4px rgba(15,118,110,0.08)
 }
 
 /* Car illustration */
@@ -327,7 +327,7 @@ section{padding:5.5rem 2rem}
   justify-content:center;padding:1rem 1.5rem 0;overflow:visible
 }
 .price-car-img svg{width:100%;max-width:220px;height:auto;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.18))}
-.price-card.featured .price-car-img svg{filter:drop-shadow(0 8px 24px rgba(200,146,42,0.3))}
+.price-card.featured .price-car-img svg{filter:drop-shadow(0 8px 24px rgba(15,118,110,0.3))}
 
 /* MAGAZINE SLASH PRICING */
 .price-card-header{padding:1.25rem 1.5rem 0}
@@ -361,7 +361,7 @@ section{padding:5.5rem 2rem}
   color:var(--gold-dark);background:var(--gold-soft);border:1px solid var(--gold-border);
   padding:0.15rem 0.5rem;border-radius:0.3rem;flex-shrink:0
 }
-.price-card.featured .price-now-badge{background:rgba(200,146,42,0.2);border-color:rgba(200,146,42,0.4);color:var(--gold-light)}
+.price-card.featured .price-now-badge{background:rgba(15,118,110,0.2);border-color:rgba(15,118,110,0.4);color:var(--gold-light)}
 .price-amount{
   font-family:'DM Sans',sans-serif;font-size:3.5rem;font-weight:800;
   color:var(--gray900);line-height:1;
@@ -395,7 +395,7 @@ section{padding:5.5rem 2rem}
   display:inline-block;font-size:0.68rem;font-weight:800;letter-spacing:0.1em;
   text-transform:uppercase;background:linear-gradient(135deg,var(--gold-dark),var(--gold));
   color:#fff;padding:0.25rem 0.75rem;border-radius:2rem;margin-bottom:0.75rem;
-  box-shadow:0 2px 10px rgba(200,146,42,0.4)
+  box-shadow:0 2px 10px rgba(15,118,110,0.4)
 }
 
 /* Feature list */
@@ -426,9 +426,9 @@ section{padding:5.5rem 2rem}
   font-family:'Syne',sans-serif;cursor:pointer;border:none;
   background:var(--gold);color:#fff;transition:all 0.25s;text-align:center;
   display:block;text-decoration:none;letter-spacing:0.02em;margin-top:1.25rem;
-  box-shadow:0 4px 14px rgba(200,146,42,0.35)
+  box-shadow:0 4px 14px rgba(15,118,110,0.35)
 }
-.price-cta:hover{background:var(--gold-dark);box-shadow:0 6px 22px rgba(200,146,42,0.5);transform:translateY(-1px)}
+.price-cta:hover{background:var(--gold-dark);box-shadow:0 6px 22px rgba(15,118,110,0.5);transform:translateY(-1px)}
 .price-card.featured .price-cta{background:#fff;color:var(--gray900)}
 .price-card.featured .price-cta:hover{background:var(--gray100);color:var(--gray900)}
 
@@ -441,6 +441,42 @@ section{padding:5.5rem 2rem}
 .addon-item:hover{border-color:var(--gold-border);background:var(--gold-soft)}
 .addon-name{color:var(--gray700);font-weight:500}
 .addon-price{color:var(--gray900);font-weight:700;font-family:'DM Sans',sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
+
+/* ══════════════════════════════════════
+   VEHICLE SIZE SELECTOR
+══════════════════════════════════════ */
+.vsize-step{display:flex;align-items:center;gap:0.65rem;margin-bottom:1rem}
+.vsize-step-num{
+  width:1.6rem;height:1.6rem;border-radius:50%;background:var(--gold);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;
+  font-size:0.78rem;font-weight:800;flex-shrink:0
+}
+.vsize-step-text{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;color:var(--gray900);letter-spacing:0.01em;text-transform:uppercase}
+.vsize-step-sub{font-size:0.85rem;color:var(--gray500);margin:0.35rem 0 1.5rem 2.25rem}
+.vsize-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.85rem;margin-bottom:3rem}
+.vsize-card{
+  background:#fff;border:1.5px solid var(--gray200);border-radius:1rem;
+  padding:1.25rem 1rem;cursor:pointer;text-align:center;transition:all 0.2s
+}
+.vsize-card:hover{border-color:var(--gold-border);background:var(--gold-soft)}
+.vsize-card.selected{border-color:var(--gold);background:var(--gold-soft);box-shadow:0 0 0 1px var(--gold)}
+.vsize-icon{font-size:1.6rem;margin-bottom:0.6rem;display:block}
+.vsize-name{font-family:'Syne',sans-serif;font-size:0.92rem;font-weight:800;color:var(--gray900);margin-bottom:0.3rem}
+.vsize-card.selected .vsize-name{color:var(--gold-dark)}
+.vsize-example{font-size:0.72rem;color:var(--gray400);line-height:1.4}
+
+/* Simplified 2-card package layout */
+.packages-hdr-row{display:flex;justify-content:space-between;align-items:baseline;max-width:60rem;margin:0 auto}
+.packages-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:60rem;margin:0 auto}
+.pkg-col-label{text-align:center;font-family:'Syne',sans-serif;font-size:0.76rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray500);margin-bottom:0.85rem}
+.price-feature-excluded{opacity:0.4}
+.price-feature-excluded li{color:var(--gray400) !important}
+.price-feature-excluded .chk{background:var(--gray300) !important}
+.quote-only-banner{
+  background:var(--gold-soft);border:1px solid var(--gold-border);border-radius:0.85rem;
+  padding:1rem 1.25rem;font-size:0.88rem;color:var(--gray700);text-align:center;margin-bottom:0.85rem
+}
+.quote-only-banner strong{color:var(--gold-dark)}
 
 /* ══════════════════════════════════════
    HOW IT WORKS
@@ -462,17 +498,17 @@ section{padding:5.5rem 2rem}
    TESTIMONIALS
 ══════════════════════════════════════ */
 .testimonials{background:var(--gray900);position:relative;overflow:hidden}
-.testimonials::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(200,146,42,0.07),transparent 60%)}
+.testimonials::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(15,118,110,0.07),transparent 60%)}
 .testimonials .section-title{color:#fff}
 .testimonials .section-sub{color:rgba(255,255,255,0.48)}
-.testimonials .section-tag{background:rgba(200,146,42,0.12);border-color:rgba(200,146,42,0.25);color:var(--gold-light)}
+.testimonials .section-tag{background:rgba(15,118,110,0.12);border-color:rgba(15,118,110,0.25);color:var(--gold-light)}
 .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .testi-card{
   background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);
   border-radius:var(--radius-xl);padding:2rem;backdrop-filter:blur(10px);
   transition:border-color 0.3s
 }
-.testi-card:hover{border-color:rgba(200,146,42,0.3)}
+.testi-card:hover{border-color:rgba(15,118,110,0.3)}
 .testi-stars{display:flex;gap:0.25rem;margin-bottom:1rem}
 .star{color:var(--gold-light);font-size:0.85rem}
 .testi-text{font-size:0.95rem;color:rgba(255,255,255,0.78);line-height:1.75;margin-bottom:1.5rem;font-style:italic}
@@ -524,8 +560,8 @@ section{padding:5.5rem 2rem}
 .faq-item.open .faq-toggle{transform:rotate(45deg)}
 .faq-answer{font-size:0.9rem;color:var(--gray500);line-height:1.75;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease;padding-top:0}
 .faq-item.open .faq-answer{max-height:10rem;padding-top:0.75rem}
-.faq-cta-box{background:var(--gray900);border-radius:var(--radius-xl);padding:3rem;position:relative;overflow:hidden;border:1px solid rgba(200,146,42,0.2)}
-.faq-cta-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 80%,rgba(200,146,42,0.1),transparent 60%)}
+.faq-cta-box{background:var(--gray900);border-radius:var(--radius-xl);padding:3rem;position:relative;overflow:hidden;border:1px solid rgba(15,118,110,0.2)}
+.faq-cta-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 80%,rgba(15,118,110,0.1),transparent 60%)}
 .faq-cta-title{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:800;color:#fff;margin-bottom:0.75rem;position:relative}
 .faq-cta-sub{font-size:0.9rem;color:rgba(255,255,255,0.52);margin-bottom:2rem;line-height:1.7;position:relative}
 
@@ -550,7 +586,7 @@ footer{background:var(--gray900);padding:5rem 2rem 3rem;border-top:1px solid rgb
 .footer-tagline{font-size:0.875rem;color:rgba(255,255,255,0.38);line-height:1.65;margin-bottom:1.5rem;max-width:22rem}
 .footer-social{display:flex;gap:0.75rem}
 .social-btn{width:2.25rem;height:2.25rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:0.5rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;text-decoration:none;color:rgba(255,255,255,0.55);font-size:0.875rem}
-.social-btn:hover{background:rgba(200,146,42,0.18);border-color:rgba(200,146,42,0.4);color:var(--gold-light)}
+.social-btn:hover{background:rgba(15,118,110,0.18);border-color:rgba(15,118,110,0.4);color:var(--gold-light)}
 .footer-col-title{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.25rem}
 .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
 .footer-links a{font-size:0.875rem;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s}
@@ -567,7 +603,7 @@ footer{background:var(--gray900);padding:5rem 2rem 3rem;border-top:1px solid rgb
 .book-bar{
   position:fixed;bottom:0;left:0;right:0;z-index:999;
   background:rgba(15,17,23,0.97);backdrop-filter:blur(20px);
-  border-top:1px solid rgba(200,146,42,0.2);
+  border-top:1px solid rgba(15,118,110,0.2);
   padding:0.85rem 2rem;display:flex;align-items:center;justify-content:center;gap:2rem
 }
 .book-bar-text{font-size:0.875rem;color:rgba(255,255,255,0.65);font-weight:500}
@@ -685,7 +721,7 @@ footer{background:var(--gray900);padding:5rem 2rem 3rem;border-top:1px solid rgb
       <rect width="1440" height="900" fill="#0f1117"/>
       <ellipse cx="900" cy="500" rx="600" ry="250" fill="url(#rg1)"/>
       <ellipse cx="300" cy="650" rx="400" ry="200" fill="url(#rg2)"/>
-      <path d="M400 200 Q800 350 1200 280" stroke="rgba(200,146,42,0.05)" stroke-width="120" fill="none"/>
+      <path d="M400 200 Q800 350 1200 280" stroke="rgba(15,118,110,0.05)" stroke-width="120" fill="none"/>
       <path d="M0 400 Q500 300 900 420 Q1200 500 1440 380" stroke="rgba(255,255,255,0.02)" stroke-width="80" fill="none"/>
     </svg>
   </div>
@@ -890,221 +926,127 @@ footer{background:var(--gray900);padding:5rem 2rem 3rem;border-top:1px solid rgb
       </div>
     </div>
 
-    <!-- Tabs -->
-    <div class="pricing-tabs">
-      <button class="price-tab active" onclick="selectTab(this,'interior-exterior')">Interior &amp; Exterior</button>
-      <button class="price-tab" onclick="selectTab(this,'interior')">Interior Only</button>
+    <!-- Vehicle Size Selector -->
+    <div class="vsize-step">
+      <div class="vsize-step-num">1</div>
+      <span class="vsize-step-text">Vehicle Size</span>
     </div>
-
-    <!-- Toggle -->
-    <div class="pricing-switch">
-      <span class="switch-label active" id="lbl-standard">Standard Vehicle</span>
-      <div class="switch-track" onclick="toggleSwitch(this)">
-        <div class="switch-thumb"></div>
+    <p class="vsize-step-sub">Pricing is based on your vehicle size — select yours to see accurate pricing below.</p>
+    <div class="vsize-grid" id="vsize-grid">
+      <div class="vsize-card selected" data-size="sedan" onclick="selectPricingVehicle(this,'sedan')">
+        <span class="vsize-icon">🚗</span>
+        <div class="vsize-name">Coupe / Sedan</div>
+        <div class="vsize-example">BMW 3-Series, Audi A4, Mercedes C-Class</div>
       </div>
-      <span class="switch-label" id="lbl-xl">XL Vehicle (+$30)</span>
+      <div class="vsize-card" data-size="suv5" onclick="selectPricingVehicle(this,'suv5')">
+        <span class="vsize-icon">🚙</span>
+        <div class="vsize-name">5-Seat SUV / Truck</div>
+        <div class="vsize-example">Range Rover, BMW X3, Ford F-150</div>
+      </div>
+      <div class="vsize-card" data-size="suv7" onclick="selectPricingVehicle(this,'suv7')">
+        <span class="vsize-icon">🚐</span>
+        <div class="vsize-name">7-Seat SUV / Van</div>
+        <div class="vsize-example">Escalade, BMW X7, Mercedes GLS</div>
+      </div>
+      <div class="vsize-card" data-size="sprinter" onclick="selectPricingVehicle(this,'sprinter')">
+        <span class="vsize-icon">🚚</span>
+        <div class="vsize-name">Sprinter / Oversized</div>
+        <div class="vsize-example">Mercedes Sprinter, Ford Transit</div>
+      </div>
     </div>
 
-    <!-- ── Interior & Exterior ── -->
-    <div class="pricing-grid" data-tab="interior-exterior">
+    <div class="vsize-step">
+      <div class="vsize-step-num">2</div>
+      <span class="vsize-step-text">Our Packages</span>
+    </div>
+    <p class="vsize-step-sub">Two simple options — Interior + Exterior, or Interior Only for less. No confusing tiers.</p>
 
-      <!-- THE BASE -->
-      <div class="price-card">
-        <div class="price-car-img"><svg viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bodyG1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#C8922A" stop-opacity="0.85"/><stop offset="100%" stop-color="#7A5210" stop-opacity="0.7"/></linearGradient>
-    <linearGradient id="roofG1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#E0A93A" stop-opacity="0.8"/><stop offset="100%" stop-color="#9A6518" stop-opacity="0.7"/></linearGradient>
-    <filter id="glow1"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  </defs>
-  <ellipse cx="130" cy="92" rx="95" ry="6" fill="rgba(0,0,0,0.18)"/>
-  <path d="M20 68 Q18 58 28 55 L55 55 Q75 30 110 26 Q140 22 165 26 Q195 30 210 48 L232 52 Q242 54 242 65 L242 76 Q242 80 238 80 L22 80 Q18 80 18 76 Z" fill="url(#bodyG1)" filter="url(#glow1)"/>
-  <path d="M62 55 Q80 34 112 28 Q140 24 163 28 Q190 33 206 48 L165 48 Q155 34 138 32 Q118 29 100 34 Q82 39 72 55 Z" fill="url(#roofG1)" opacity="0.9"/>
-  <path d="M100 34 Q86 40 75 54 L120 54 L120 32 Q110 31 100 34 Z" fill="rgba(255,220,150,0.25)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
-  <path d="M138 32 L138 54 L200 54 Q192 38 168 30 Z" fill="rgba(255,220,150,0.2)" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
-  <line x1="120" y1="32" x2="120" y2="78" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-  <circle cx="72" cy="79" r="18" fill="#0f1117" opacity="0.85"/>
-  <circle cx="190" cy="79" r="18" fill="#0f1117" opacity="0.85"/>
-  <circle cx="72" cy="79" r="13" fill="#1c2030"/>
-  <circle cx="190" cy="79" r="13" fill="#1c2030"/>
-  <circle cx="72" cy="79" r="7" fill="#C8922A" opacity="0.8"/>
-  <circle cx="190" cy="79" r="7" fill="#C8922A" opacity="0.8"/>
-  <circle cx="72" cy="79" r="3" fill="#d1d5db"/>
-  <circle cx="190" cy="79" r="3" fill="#d1d5db"/>
-  <path d="M230 58 Q238 60 240 66 L228 67 Z" fill="rgba(255,255,200,0.5)"/>
-  <path d="M24 60 Q20 62 20 68 L30 68 Z" fill="rgba(255,80,80,0.4)"/>
-  <path d="M90 42 Q110 36 145 38 Q165 39 175 44" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-</svg></div>
-        <div class="price-card-header">
-          <!-- Magazine slash pricing -->
+    <div class="packages-hdr-row">
+      <div class="pkg-col-label">Interior + Exterior</div>
+      <div class="pkg-col-label">Interior Only</div>
+    </div>
+
+    <div class="packages-grid">
+
+      <!-- THE STANDARD (Interior + Exterior) -->
+      <div class="price-card featured">
+        <div class="price-card-header" style="padding-top:1.5rem">
+          <div class="price-popular">⭐ Most Popular</div>
           <div class="price-promo-wrap">
-            <div class="price-was-row">
-              <span class="price-was-label">WAS</span>
-              <span class="price-was-amount">$<span class="price-val-full" data-base="168">168</span></span>
-            </div>
             <div class="price-now-row">
-              <span class="price-now-badge">50% OFF</span>
-              <div class="price-amount"><sup>$</sup><span class="price-val" data-base="84">84</span></div>
-              
+              <div class="price-amount"><sup>$</sup><span class="price-val" id="std-price">229</span></div>
             </div>
           </div>
-          <div class="price-duration-bar">1.5 Hour Duration</div>
-          <h3 class="price-name">The Base</h3>
-          <p class="price-desc">Best for well-maintained vehicles — a thorough upkeep detail covering every surface inside and out.</p>
-          <div class="price-addons-line"><strong>Popular Add-Ons:</strong> Pet Hair Removal ($15–$35)</div>
+          <div class="price-duration-bar" id="std-duration">2.5 Hours</div>
+          <h3 class="price-name">The Standard</h3>
+          <p class="price-desc">Complete detail — steam-cleaned inside, hand-washed, decontaminated, and waxed outside.</p>
         </div>
         <div class="price-body">
           <div class="price-divider"></div>
           <div class="price-section-hdr">Interior:</div>
           <ul class="price-features">
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Professional Vacuum</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-Pressure Air Blowout (Crevices, Vents, Cupholders)</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Wipe &amp; Clean All Surfaces</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Clean Floor Mats &amp; Carpets (Spray &amp; Wipe)</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Clean Seats (Spray &amp; Wipe)</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Clean Windows, Mirrors &amp; Visor</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>2-Step Deep Professional Vacuum</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full Steam Cleaning (Seats, Carpets, Mats, Console)</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Leather Clean &amp; Conditioning</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Windows, Mirrors &amp; Visor</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dress Plastics (Matte Finish)</li>
             <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Detail Trunk</li>
           </ul>
           <div class="price-section-hdr">Exterior:</div>
           <ul class="price-features">
             <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Professional Hand Wash</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Clean &amp; Wash Wheel Wells</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Detail Rim Faces &amp; Tires</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dress Exterior Trim &amp; Tires</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Clean Door Jambs</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Clean Windows</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Decontamination Pre-Soak</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Wheel Wells, Rims &amp; Tires</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-Gloss Spray Wax</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Door Jambs &amp; Trim</li>
           </ul>
-          <button onclick="openBooking()" class="price-cta" style="border:none;cursor:pointer">Book Online Now →</button>
+          <div id="std-quote-banner" class="quote-only-banner" style="display:none">📞 <strong>Sprinters &amp; oversized vans</strong> are priced individually — call us for a fast, accurate quote.</div>
+          <button onclick="openBookingForPackage('The Standard','Interior & Exterior')" id="std-cta" class="price-cta" style="border:none;cursor:pointer">Schedule Online →</button>
+          <a href="tel:+18001234567" class="btn-ghost" style="display:block;text-align:center;margin-top:0.6rem;text-decoration:none">📞 Call Us</a>
         </div>
       </div>
 
-      <!-- THE STANDARD (FEATURED) -->
-      <div class="price-card featured">
-        <div class="price-car-img"><svg viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bodyGS" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#E0A93A" stop-opacity="1"/><stop offset="100%" stop-color="#9A6518" stop-opacity="0.85"/></linearGradient>
-    <linearGradient id="roofGS" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F0C060" stop-opacity="1"/><stop offset="100%" stop-color="#C8922A" stop-opacity="0.85"/></linearGradient>
-    <filter id="glowS"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  </defs>
-  <ellipse cx="130" cy="92" rx="95" ry="5" fill="rgba(200,146,42,0.25)"/>
-  <path d="M20 68 Q18 58 28 55 L55 55 Q75 30 110 26 Q140 22 165 26 Q195 30 210 48 L232 52 Q242 54 242 65 L242 76 Q242 80 238 80 L22 80 Q18 80 18 76 Z" fill="url(#bodyGS)" filter="url(#glowS)"/>
-  <path d="M62 55 Q80 34 112 28 Q140 24 163 28 Q190 33 206 48 L165 48 Q155 34 138 32 Q118 29 100 34 Q82 39 72 55 Z" fill="url(#roofGS)" opacity="0.95"/>
-  <path d="M100 34 Q86 40 75 54 L120 54 L120 32 Q110 31 100 34 Z" fill="rgba(255,245,200,0.25)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
-  <path d="M138 32 L138 54 L200 54 Q192 38 168 30 Z" fill="rgba(255,245,200,0.2)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
-  <line x1="120" y1="32" x2="120" y2="78" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
-  <circle cx="72" cy="79" r="18" fill="#070d14" opacity="0.9"/>
-  <circle cx="190" cy="79" r="18" fill="#070d14" opacity="0.9"/>
-  <circle cx="72" cy="79" r="13" fill="#111820"/>
-  <circle cx="190" cy="79" r="13" fill="#111820"/>
-  <circle cx="72" cy="79" r="7" fill="#E0A93A" opacity="0.95"/>
-  <circle cx="190" cy="79" r="7" fill="#E0A93A" opacity="0.95"/>
-  <circle cx="72" cy="79" r="3" fill="#fff" opacity="0.9"/>
-  <circle cx="190" cy="79" r="3" fill="#fff" opacity="0.9"/>
-  <path d="M230 58 Q238 60 240 66 L228 67 Z" fill="rgba(255,255,180,0.7)"/>
-  <path d="M90 42 Q110 36 145 38 Q165 39 175 44" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
-</svg></div>
-        <div class="price-card-header">
-          <div class="price-popular">⭐ Most Popular</div>
+      <!-- INTERIOR DETAIL (Interior Only) -->
+      <div class="price-card">
+        <div class="price-card-header" style="padding-top:1.5rem">
           <div class="price-promo-wrap">
-            <div class="price-was-row">
-              <span class="price-was-label">WAS</span>
-              <span class="price-was-amount">$<span class="price-val-full" data-base="268">268</span></span>
-            </div>
             <div class="price-now-row">
-              <span class="price-now-badge">50% OFF</span>
-              <div class="price-amount"><sup>$</sup><span class="price-val" data-base="134">134</span></div>
-              
+              <div class="price-amount"><sup>$</sup><span class="price-val" id="int-price">179</span></div>
             </div>
           </div>
-          <div class="price-duration-bar">3 Hours Duration</div>
-          <h3 class="price-name">The Standard</h3>
-          <p class="price-desc">Our most popular package — full interior steam cleaning plus a glossy spray wax for a protected, showroom-quality finish.</p>
-          <div class="price-addons-line"><strong>Popular Add-Ons:</strong> Pet Hair Removal, Engine Bay Detail ($30), Clay Bar ($25)</div>
+          <div class="price-duration-bar" id="int-duration">2 Hours</div>
+          <h3 class="price-name">Interior Detail</h3>
+          <p class="price-desc">Full interior detail — steam-cleaned, vacuumed, and refreshed throughout. Exterior not included.</p>
         </div>
         <div class="price-body">
           <div class="price-divider"></div>
           <div class="price-section-hdr">Interior:</div>
           <ul class="price-features">
-            <li><span class="chk bold-chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0f1117" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>Everything in The Base, plus:</strong></li>
             <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>2-Step Deep Professional Vacuum</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full Steam Cleaning (Seats, Carpets, Mats, Door Panels, Console)</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Light Stain Treatment</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Leather Deep Clean &amp; Conditioning</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dress Plastic Surfaces (Matte Finish)</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full Steam Cleaning</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Leather Clean &amp; Conditioning</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Windows, Mirrors &amp; Visor</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dress Plastics (Matte Finish)</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Detail Trunk</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-Pressure Air — Vents &amp; Crevices</li>
           </ul>
-          <div class="price-section-hdr">Exterior:</div>
-          <ul class="price-features">
-            <li><span class="chk bold-chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="#0f1117" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>Everything in The Base, plus:</strong></li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Pre-Treatment Soak (Bugs, Bird Droppings, Road Debris)</li>
+          <div class="price-section-hdr" style="color:var(--gray400)">Exterior — Not Included:</div>
+          <ul class="price-features price-feature-excluded">
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Professional Hand Wash</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Decontamination Pre-Soak</li>
+            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Wheel Wells, Rims &amp; Tires</li>
             <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-Gloss Spray Wax</li>
           </ul>
-          <button onclick="openBooking()" class="price-cta" style="border:none;cursor:pointer">Book Online Now →</button>
+          <div id="int-quote-banner" class="quote-only-banner" style="display:none">📞 <strong>Sprinters &amp; oversized vans</strong> are priced individually — call us for a fast, accurate quote.</div>
+          <button onclick="openBookingForPackage('Interior Detail','Interior Only')" id="int-cta" class="price-cta" style="border:none;cursor:pointer">Schedule Online →</button>
+          <a href="tel:+18001234567" class="btn-ghost" style="display:block;text-align:center;margin-top:0.6rem;text-decoration:none">📞 Call Us</a>
         </div>
       </div>
 
-      <!-- THE WORKS -->
-      <div class="price-card">
-        <div class="price-car-img"><svg viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bodyG3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#C8922A" stop-opacity="0.85"/><stop offset="100%" stop-color="#7A5210" stop-opacity="0.7"/></linearGradient>
-    <linearGradient id="roofG3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#E0A93A" stop-opacity="0.8"/><stop offset="100%" stop-color="#9A6518" stop-opacity="0.7"/></linearGradient>
-    <filter id="glow3"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  </defs>
-  <ellipse cx="130" cy="92" rx="95" ry="6" fill="rgba(0,0,0,0.18)"/>
-  <path d="M20 68 Q18 58 28 55 L55 55 Q75 30 110 26 Q140 22 165 26 Q195 30 210 48 L232 52 Q242 54 242 65 L242 76 Q242 80 238 80 L22 80 Q18 80 18 76 Z" fill="url(#bodyG3)" filter="url(#glow3)"/>
-  <path d="M62 55 Q80 34 112 28 Q140 24 163 28 Q190 33 206 48 L165 48 Q155 34 138 32 Q118 29 100 34 Q82 39 72 55 Z" fill="url(#roofG3)" opacity="0.9"/>
-  <path d="M100 34 Q86 40 75 54 L120 54 L120 32 Q110 31 100 34 Z" fill="rgba(255,220,150,0.25)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
-  <path d="M138 32 L138 54 L200 54 Q192 38 168 30 Z" fill="rgba(255,220,150,0.2)" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
-  <line x1="120" y1="32" x2="120" y2="78" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-  <circle cx="72" cy="79" r="18" fill="#0f1117" opacity="0.85"/>
-  <circle cx="190" cy="79" r="18" fill="#0f1117" opacity="0.85"/>
-  <circle cx="72" cy="79" r="13" fill="#1c2030"/>
-  <circle cx="190" cy="79" r="13" fill="#1c2030"/>
-  <circle cx="72" cy="79" r="7" fill="#C8922A" opacity="0.8"/>
-  <circle cx="190" cy="79" r="7" fill="#C8922A" opacity="0.8"/>
-  <circle cx="72" cy="79" r="3" fill="#d1d5db"/>
-  <circle cx="190" cy="79" r="3" fill="#d1d5db"/>
-  <path d="M230 58 Q238 60 240 66 L228 67 Z" fill="rgba(255,255,200,0.5)"/>
-  <path d="M24 60 Q20 62 20 68 L30 68 Z" fill="rgba(255,80,80,0.4)"/>
-  <path d="M90 42 Q110 36 145 38 Q165 39 175 44" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-</svg></div>
-        <div class="price-card-header">
-          <div class="price-promo-wrap">
-            <div class="price-was-row">
-              <span class="price-was-label">WAS</span>
-              <span class="price-was-amount">$<span class="price-val-full" data-base="368">368</span></span>
-            </div>
-            <div class="price-now-row">
-              <span class="price-now-badge">50% OFF</span>
-              <div class="price-amount"><sup>$</sup><span class="price-val" data-base="184">184</span></div>
-              
-            </div>
-          </div>
-          <div class="price-duration-bar">4 Hours Duration</div>
-          <h3 class="price-name">The Works</h3>
-          <p class="price-desc">Our most complete detail — full interior shampoo &amp; stain extraction plus exterior decontamination.</p>
-          <div class="price-addons-line"><strong>Popular Add-Ons:</strong> Pet Hair Removal, Ozone Odor Removal ($30)</div>
-        </div>
-        <div class="price-body">
-          <div class="price-divider"></div>
-          <div class="price-section-hdr">Interior:</div>
-          <ul class="price-features">
-            <li><span class="chk bold-chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>Everything in The Standard, plus:</strong></li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Interior Shampoo &amp; Extraction (Carpets, Mats, Seats)</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Heavy Stain Removal Treatment</li>
-          </ul>
-          <div class="price-section-hdr">Exterior:</div>
-          <ul class="price-features">
-            <li><span class="chk bold-chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>Everything in The Standard, plus:</strong></li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full Decontamination Wash (Iron, Tar &amp; Road Contamination Removal)</li>
-          </ul>
-          <button onclick="openBooking()" class="price-cta" style="border:none;cursor:pointer">Book Online Now →</button>
-        </div>
-      </div>
+    </div><!-- /packages-grid -->
 
-    </div><!-- /pricing-grid IE -->
-
-    <!-- Add-ons IE -->
-    <div class="addons" data-tab="interior-exterior">
+    <!-- Add-ons -->
+    <div class="addons">
       <h3 class="addons-title">Available Add-Ons</h3>
       <p class="addons-sub">Enhance your detail with any of the services below. Some add-ons may already be included in certain packages.</p>
       <div class="addons-grid">
@@ -1123,147 +1065,8 @@ footer{background:var(--gray900);padding:5rem 2rem 3rem;border-top:1px solid rgb
       <p style="font-size:0.78rem;color:var(--gray500);margin-top:1rem;font-style:italic">*some add-ons may be included in packages</p>
     </div>
 
-    <!-- ── Interior Only Grid ── -->
-    <div class="pricing-grid" data-tab="interior" style="display:none;grid-template-columns:repeat(2,1fr);max-width:60rem;margin-left:auto;margin-right:auto">
-
-      <!-- STEAM & CLEAN -->
-      <div class="price-card">
-        <div class="price-car-img"><svg viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bodyGI1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#C8922A" stop-opacity="0.85"/><stop offset="100%" stop-color="#7A5210" stop-opacity="0.7"/></linearGradient>
-    <linearGradient id="roofGI1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#E0A93A" stop-opacity="0.8"/><stop offset="100%" stop-color="#9A6518" stop-opacity="0.7"/></linearGradient>
-    <filter id="glowI1"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  </defs>
-  <ellipse cx="130" cy="92" rx="95" ry="6" fill="rgba(0,0,0,0.18)"/>
-  <path d="M20 68 Q18 58 28 55 L55 55 Q75 30 110 26 Q140 22 165 26 Q195 30 210 48 L232 52 Q242 54 242 65 L242 76 Q242 80 238 80 L22 80 Q18 80 18 76 Z" fill="url(#bodyGI1)" filter="url(#glowI1)"/>
-  <path d="M62 55 Q80 34 112 28 Q140 24 163 28 Q190 33 206 48 L165 48 Q155 34 138 32 Q118 29 100 34 Q82 39 72 55 Z" fill="url(#roofGI1)" opacity="0.9"/>
-  <path d="M100 34 Q86 40 75 54 L120 54 L120 32 Q110 31 100 34 Z" fill="rgba(255,220,150,0.25)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
-  <path d="M138 32 L138 54 L200 54 Q192 38 168 30 Z" fill="rgba(255,220,150,0.2)" stroke="rgba(255,255,255,0.18)" stroke-width="0.5"/>
-  <line x1="120" y1="32" x2="120" y2="78" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-  <circle cx="72" cy="79" r="18" fill="#0f1117" opacity="0.85"/>
-  <circle cx="190" cy="79" r="18" fill="#0f1117" opacity="0.85"/>
-  <circle cx="72" cy="79" r="13" fill="#1c2030"/>
-  <circle cx="190" cy="79" r="13" fill="#1c2030"/>
-  <circle cx="72" cy="79" r="7" fill="#C8922A" opacity="0.8"/>
-  <circle cx="190" cy="79" r="7" fill="#C8922A" opacity="0.8"/>
-  <circle cx="72" cy="79" r="3" fill="#d1d5db"/>
-  <circle cx="190" cy="79" r="3" fill="#d1d5db"/>
-  <path d="M230 58 Q238 60 240 66 L228 67 Z" fill="rgba(255,255,200,0.5)"/>
-  <path d="M24 60 Q20 62 20 68 L30 68 Z" fill="rgba(255,80,80,0.4)"/>
-  <path d="M90 42 Q110 36 145 38 Q165 39 175 44" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-</svg></div>
-        <div class="price-card-header">
-          <div class="price-promo-wrap">
-            <div class="price-was-row">
-              <span class="price-was-label">WAS</span>
-              <span class="price-was-amount">$<span class="price-val-full" data-base="198">198</span></span>
-            </div>
-            <div class="price-now-row">
-              <span class="price-now-badge">50% OFF</span>
-              <div class="price-amount"><sup>$</sup><span class="price-val" data-base="99">99</span></div>
-              
-            </div>
-          </div>
-          <div class="price-duration-bar">1.5 Hours Duration</div>
-          <h3 class="price-name">Steam &amp; Clean</h3>
-          <p class="price-desc">A thorough interior refresh with full steam cleaning on all surfaces. Perfect for well-maintained vehicles needing a deep inside clean.</p>
-          <div class="price-addons-line"><strong>Popular Add-Ons:</strong> Pet Hair Removal, Car Seat Cleaning ($18)</div>
-        </div>
-        <div class="price-body">
-          <div class="price-divider"></div>
-          <ul class="price-features">
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>2-Step Deep Professional Vacuum</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-Pressure Air Blowout (Vents, Crevices, Cupholders)</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full Steam Cleaning (Seats, Carpets, Mats, Door Panels, Console)</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Light Stain Treatment</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Leather Deep Clean &amp; Conditioning</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dress Plastic Surfaces (Matte Finish)</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Clean Windows, Mirrors &amp; Visor</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Detail Trunk</li>
-          </ul>
-          <button onclick="openBooking()" class="price-cta" style="border:none;cursor:pointer">Book Online Now →</button>
-        </div>
-      </div>
-
-      <!-- SHAMPOO & DEEP CLEAN (FEATURED) -->
-      <div class="price-card featured">
-        <div class="price-car-img"><svg viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bodyGIS" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#E0A93A" stop-opacity="1"/><stop offset="100%" stop-color="#9A6518" stop-opacity="0.85"/></linearGradient>
-    <linearGradient id="roofGIS" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F0C060" stop-opacity="1"/><stop offset="100%" stop-color="#C8922A" stop-opacity="0.85"/></linearGradient>
-    <filter id="glowIS"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  </defs>
-  <ellipse cx="130" cy="92" rx="95" ry="5" fill="rgba(200,146,42,0.25)"/>
-  <path d="M20 68 Q18 58 28 55 L55 55 Q75 30 110 26 Q140 22 165 26 Q195 30 210 48 L232 52 Q242 54 242 65 L242 76 Q242 80 238 80 L22 80 Q18 80 18 76 Z" fill="url(#bodyGIS)" filter="url(#glowIS)"/>
-  <path d="M62 55 Q80 34 112 28 Q140 24 163 28 Q190 33 206 48 L165 48 Q155 34 138 32 Q118 29 100 34 Q82 39 72 55 Z" fill="url(#roofGIS)" opacity="0.95"/>
-  <path d="M100 34 Q86 40 75 54 L120 54 L120 32 Q110 31 100 34 Z" fill="rgba(255,245,200,0.25)" stroke="rgba(255,255,255,0.3)" stroke-width="0.5"/>
-  <path d="M138 32 L138 54 L200 54 Q192 38 168 30 Z" fill="rgba(255,245,200,0.2)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5"/>
-  <line x1="120" y1="32" x2="120" y2="78" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
-  <circle cx="72" cy="79" r="18" fill="#070d14" opacity="0.9"/>
-  <circle cx="190" cy="79" r="18" fill="#070d14" opacity="0.9"/>
-  <circle cx="72" cy="79" r="13" fill="#111820"/>
-  <circle cx="190" cy="79" r="13" fill="#111820"/>
-  <circle cx="72" cy="79" r="7" fill="#E0A93A" opacity="0.95"/>
-  <circle cx="190" cy="79" r="7" fill="#E0A93A" opacity="0.95"/>
-  <circle cx="72" cy="79" r="3" fill="#fff" opacity="0.9"/>
-  <circle cx="190" cy="79" r="3" fill="#fff" opacity="0.9"/>
-  <path d="M230 58 Q238 60 240 66 L228 67 Z" fill="rgba(255,255,180,0.7)"/>
-  <path d="M90 42 Q110 36 145 38 Q165 39 175 44" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
-</svg></div>
-        <div class="price-card-header">
-          <div class="price-popular">Popular Choice</div>
-          <div class="price-promo-wrap">
-            <div class="price-was-row">
-              <span class="price-was-label">WAS</span>
-              <span class="price-was-amount">$<span class="price-val-full" data-base="298">298</span></span>
-            </div>
-            <div class="price-now-row">
-              <span class="price-now-badge">50% OFF</span>
-              <div class="price-amount"><sup>$</sup><span class="price-val" data-base="149">149</span></div>
-              
-            </div>
-          </div>
-          <div class="price-duration-bar">2.5 Hours Duration</div>
-          <h3 class="price-name">Shampoo &amp; Deep Clean</h3>
-          <p class="price-desc">Our deepest interior package. Shampooing and hot-water extraction lifts tough stains, built-in odors, and years of embedded dirt.</p>
-          <div class="price-addons-line"><strong>Popular Add-Ons:</strong> Pet Hair Removal, Ozone Odor Treatment ($25)</div>
-        </div>
-        <div class="price-body">
-          <div class="price-divider"></div>
-          <ul class="price-features">
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>2-Step Deep Professional Vacuum</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-Pressure Air Blowout (Vents, Crevices, Cupholders)</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full Steam Cleaning (Seats, Carpets, Mats, Door Panels, Console)</li>
-            <li><span class="chk bold-chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>Interior Shampoo &amp; Extraction (Carpets, Mats, Cloth Seats)</strong></li>
-            <li><span class="chk bold-chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>Heavy Stain Treatment</strong></li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Leather Deep Clean &amp; Conditioning</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dress Plastic Surfaces (Matte Finish)</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Clean Windows, Mirrors &amp; Visor</li>
-            <li><span class="chk"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Detail Trunk</li>
-          </ul>
-          <button onclick="openBooking()" class="price-cta" style="border:none;cursor:pointer">Book Online Now →</button>
-        </div>
-      </div>
-
-    </div><!-- /interior only grid -->
-
-    <!-- Add-ons Interior Only -->
-    <div class="addons" data-tab="interior" style="display:none">
-      <h3 class="addons-title">Available Add-Ons</h3>
-      <p class="addons-sub">Enhance your interior detail with any of the services below.</p>
-      <div class="addons-grid">
-        <div class="addon-item"><span class="addon-name">Pet Hair Removal</span><span class="addon-price">$29–$69</span></div>
-        <div class="addon-item"><span class="addon-name">Ozone Odor Elimination</span><span class="addon-price">$50</span></div>
-        <div class="addon-item"><span class="addon-name">Bio Cleaning Fee (Vomit, Urine, Etc)</span><span class="addon-price">$50</span></div>
-        <div class="addon-item"><span class="addon-name">Car Seat Cleaning</span><span class="addon-price">$35</span></div>
-        <div class="addon-item"><span class="addon-name">Headliner Deep Cleaning</span><span class="addon-price">$50</span></div>
-        <div class="addon-item"><span class="addon-name">Mold Removal</span><span class="addon-price">Call for Quote</span></div>
-        <div class="addon-item"><span class="addon-name">Extra Dirty Fee</span><span class="addon-price">$50/Hour</span></div>
-      </div>
-      <p style="font-size:0.78rem;color:var(--gray500);margin-top:1rem;font-style:italic">*some add-ons may be included in packages</p>
-    </div>
-
   </div>
+</section>
 </section>
 
 <!-- ══════════════════════════════════════
@@ -1309,7 +1112,7 @@ footer{background:var(--gray900);padding:5rem 2rem 3rem;border-top:1px solid rgb
 <section class="gallery-section" id="gallery">
   <div class="container">
     <div style="margin-bottom:2.5rem">
-      <div class="section-tag" style="background:rgba(200,146,42,0.12);border-color:rgba(200,146,42,0.25);color:var(--gold-light)">Gallery</div>
+      <div class="section-tag" style="background:rgba(15,118,110,0.12);border-color:rgba(15,118,110,0.25);color:var(--gold-light)">Gallery</div>
       <h2 class="section-title" style="color:#fff">Our Work Speaks for Itself</h2>
     </div>
     <div class="gallery-grid">
@@ -1450,7 +1253,7 @@ footer{background:var(--gray900);padding:5rem 2rem 3rem;border-top:1px solid rgb
       </div>
       <div>
         <div class="faq-cta-box">
-          <div class="section-tag" style="background:rgba(200,146,42,0.15);border-color:rgba(200,146,42,0.3);color:var(--gold-light);margin-bottom:1.5rem">🎉 Founding Member Offer</div>
+          <div class="section-tag" style="background:rgba(15,118,110,0.15);border-color:rgba(15,118,110,0.3);color:var(--gold-light);margin-bottom:1.5rem">🎉 Founding Member Offer</div>
           <h3 class="faq-cta-title">Lock In 50% Off Before Spots Run Out</h3>
           <p class="faq-cta-sub">We're brand new to Northern Virginia and offering our first 100 customers half off everything — no strings attached. Book online in under 60 seconds.</p>
           <button onclick="openBooking()" class="btn-hero-primary" style="display:inline-flex;margin-bottom:1rem;font-size:0.95rem;border:none;cursor:pointer">Book Online Now →</button>
@@ -1558,55 +1361,94 @@ footer{background:var(--gray900);padding:5rem 2rem 3rem;border-top:1px solid rgb
 ══════════════════════════════════════ -->
 <script>
 // ── State ──────────────────────────────────────────────────────
-var xlEnabled     = false;
-var currentTab    = 'interior-exterior';
-var XL_SURCHARGE  = 30;
-var PROMO_ACTIVE  = true;   // flip to false after 100 bookings
-
-// Base prices (full)
-// The data-base on .price-val already holds the 50%-off value
-// data-base on .price-val-full holds the original
-
-function updatePrices() {
-  // Full / original prices
-  document.querySelectorAll('.price-val-full').forEach(function(el) {
-    var base = parseInt(el.getAttribute('data-base'), 10);
-    el.textContent = xlEnabled ? base + XL_SURCHARGE : base;
-  });
-  // Discounted prices
-  document.querySelectorAll('.price-val').forEach(function(el) {
-    var base = parseInt(el.getAttribute('data-base'), 10);
-    el.textContent = xlEnabled ? base + Math.round(XL_SURCHARGE / 2) : base;
-  });
-}
-
-function selectTab(btn, tab) {
-  document.querySelectorAll('.price-tab').forEach(function(t) { t.classList.remove('active'); });
-  btn.classList.add('active');
-  currentTab = tab;
-  document.querySelectorAll('.pricing-grid[data-tab]').forEach(function(g) {
-    g.style.display = (g.getAttribute('data-tab') === tab) ? 'grid' : 'none';
-  });
-  document.querySelectorAll('.addons[data-tab]').forEach(function(a) {
-    a.style.display = (a.getAttribute('data-tab') === tab) ? 'block' : 'none';
-  });
-  updatePrices();
-}
-
-function toggleSwitch(el) {
-  el.classList.toggle('on');
-  xlEnabled = el.classList.contains('on');
-  var lblStd = document.getElementById('lbl-standard');
-  var lblXl  = document.getElementById('lbl-xl');
-  if (xlEnabled) {
-    if (lblStd) lblStd.classList.remove('active');
-    if (lblXl)  lblXl.classList.add('active');
-  } else {
-    if (lblStd) lblStd.classList.add('active');
-    if (lblXl)  lblXl.classList.remove('active');
+// Real pricing/duration/Square variation IDs pulled directly from your
+// live Square Catalog (via list-catalog.js). Keep this object in sync
+// with Square if you ever add/rename services or vehicle classes there.
+var PRICING_DATA = {
+  sedan: {
+    label: 'Coupe / Sedan',
+    standard: { price: 229, duration: '2.5 Hours', variationId: 'WC3VIQCQNLKMAHKRVH5DBGBD' },
+    interior: { price: 179, duration: '2 Hours',    variationId: 'RYDEVTT47SOKSP2NJAFRQKUM' }
+  },
+  suv5: {
+    label: '5-Seat SUV / Truck',
+    standard: { price: 269, duration: '2.5 Hours', variationId: '56A4UIXHWM3YT6J7XF4IUCCX' },
+    interior: { price: 229, duration: '2.5 Hours',  variationId: 'UEYZPBGF4WTV4L2ZUGFYR3TN' }
+  },
+  suv7: {
+    label: '7-Seat SUV / Van',
+    standard: { price: 329, duration: '3 Hours', variationId: 'HVGO3IFXBZONXLOM7UGJ2HL5' },
+    interior: { price: 279, duration: '3 Hours', variationId: 'J3PPJHTTKCOXULIWEFN7BZR2' }
+  },
+  sprinter: {
+    label: 'Sprinter / Oversized',
+    standard: { price: null, duration: '4 Hours', variationId: 'D2XRLCPJTW6OFCNM54725JJE' },
+    interior: { price: null, duration: '4 Hours', variationId: 'TJG7GK6ONSNGXPHZNJQ5UWQ7' }
   }
-  updatePrices();
+};
+var currentPricingVehicle = 'sedan';
+
+function renderPricingCards() {
+  var d = PRICING_DATA[currentPricingVehicle];
+
+  var stdEl   = document.getElementById('std-price');
+  var stdDur  = document.getElementById('std-duration');
+  var stdCta  = document.getElementById('std-cta');
+  var stdBanner = document.getElementById('std-quote-banner');
+  if (d.standard.price === null) {
+    stdEl.parentElement.style.display = 'none';
+    stdDur.textContent = d.standard.duration;
+    stdBanner.style.display = 'block';
+    stdCta.textContent = 'Call for Quote';
+  } else {
+    stdEl.parentElement.style.display = '';
+    stdEl.textContent = d.standard.price;
+    stdDur.textContent = d.standard.duration;
+    stdBanner.style.display = 'none';
+    stdCta.textContent = 'Schedule Online →';
+  }
+
+  var intEl   = document.getElementById('int-price');
+  var intDur  = document.getElementById('int-duration');
+  var intCta  = document.getElementById('int-cta');
+  var intBanner = document.getElementById('int-quote-banner');
+  if (d.interior.price === null) {
+    intEl.parentElement.style.display = 'none';
+    intDur.textContent = d.interior.duration;
+    intBanner.style.display = 'block';
+    intCta.textContent = 'Call for Quote';
+  } else {
+    intEl.parentElement.style.display = '';
+    intEl.textContent = d.interior.price;
+    intDur.textContent = d.interior.duration;
+    intBanner.style.display = 'none';
+    intCta.textContent = 'Schedule Online →';
+  }
 }
+
+function selectPricingVehicle(el, size) {
+  document.querySelectorAll('.vsize-card').forEach(function(c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+  currentPricingVehicle = size;
+  renderPricingCards();
+}
+
+// Called by the pricing cards' CTA buttons — opens the booking modal
+// pre-loaded with the package + vehicle size already chosen on this page.
+function openBookingForPackage(packageName, packageType) {
+  var d = PRICING_DATA[currentPricingVehicle];
+  if (currentPricingVehicle === 'sprinter') {
+    // No fixed price to check out with — route to a call instead.
+    window.location.href = 'tel:+18001234567';
+    return;
+  }
+  openBooking();
+  // Pre-select matching service + vehicle size once modal is open
+  bkData.vehicleSizeKey = currentPricingVehicle;
+  bkData.vehicleSizeLabel = d.label;
+}
+
+renderPricingCards();
 
 function toggleFaq(el) {
   var wasOpen = el.classList.contains('open');
@@ -1681,10 +1523,10 @@ document.querySelectorAll(
 }
 .bk-overlay.open{opacity:1;pointer-events:all}
 .bk-modal{
-  background:var(--gray900);border:1px solid rgba(200,146,42,0.22);border-radius:1.75rem;
+  background:var(--gray900);border:1px solid rgba(15,118,110,0.22);border-radius:1.75rem;
   width:100%;max-width:680px;max-height:92vh;overflow:hidden;
   display:flex;flex-direction:column;
-  box-shadow:0 40px 120px rgba(0,0,0,0.7),0 0 0 1px rgba(200,146,42,0.08);
+  box-shadow:0 40px 120px rgba(0,0,0,0.7),0 0 0 1px rgba(15,118,110,0.08);
   transform:translateY(28px) scale(0.97);transition:transform 0.38s cubic-bezier(0.22,1,0.36,1)
 }
 .bk-overlay.open .bk-modal{transform:translateY(0) scale(1)}
@@ -1693,7 +1535,7 @@ document.querySelectorAll(
 .bk-header{
   padding:1.5rem 2rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.07);
   display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
-  background:linear-gradient(135deg,rgba(200,146,42,0.06),transparent)
+  background:linear-gradient(135deg,rgba(15,118,110,0.06),transparent)
 }
 .bk-header-left{}
 .bk-brand{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.25rem}
@@ -1719,18 +1561,18 @@ document.querySelectorAll(
   font-family:'Syne',sans-serif;font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.35);
   transition:all 0.3s;flex-shrink:0;position:relative;z-index:1
 }
-.bk-step-dot.active{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:0 0 16px rgba(200,146,42,0.5)}
-.bk-step-dot.done{background:rgba(200,146,42,0.2);border-color:rgba(200,146,42,0.5);color:var(--gold-light)}
+.bk-step-dot.active{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:0 0 16px rgba(15,118,110,0.5)}
+.bk-step-dot.done{background:rgba(15,118,110,0.2);border-color:rgba(15,118,110,0.5);color:var(--gold-light)}
 .bk-step-label{font-size:0.65rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-left:0.5rem;white-space:nowrap;transition:color 0.3s}
 .bk-step-label.active{color:var(--gold-light)}
 .bk-step-label.done{color:rgba(255,255,255,0.45)}
 .bk-step-line{flex:1;height:1px;background:rgba(255,255,255,0.08);margin:0 0.5rem;transition:background 0.3s}
-.bk-step-line.done{background:rgba(200,146,42,0.4)}
+.bk-step-line.done{background:rgba(15,118,110,0.4)}
 
 /* ── Body / Scroll area ── */
-.bk-body{flex:1;overflow-y:auto;padding:2rem;scrollbar-width:thin;scrollbar-color:rgba(200,146,42,0.3) transparent}
+.bk-body{flex:1;overflow-y:auto;padding:2rem;scrollbar-width:thin;scrollbar-color:rgba(15,118,110,0.3) transparent}
 .bk-body::-webkit-scrollbar{width:4px}
-.bk-body::-webkit-scrollbar-thumb{background:rgba(200,146,42,0.3);border-radius:2px}
+.bk-body::-webkit-scrollbar-thumb{background:rgba(15,118,110,0.3);border-radius:2px}
 
 /* ── Step Panels ── */
 .bk-panel{display:none;animation:bk-fade 0.3s ease}
@@ -1745,14 +1587,14 @@ document.querySelectorAll(
   background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);
   border-radius:1rem;padding:1.25rem;cursor:pointer;transition:all 0.22s;position:relative;overflow:hidden
 }
-.bk-service-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(200,146,42,0.08),transparent 60%);opacity:0;transition:opacity 0.22s}
-.bk-service-card:hover{border-color:rgba(200,146,42,0.35);background:rgba(200,146,42,0.06)}
+.bk-service-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(15,118,110,0.08),transparent 60%);opacity:0;transition:opacity 0.22s}
+.bk-service-card:hover{border-color:rgba(15,118,110,0.35);background:rgba(15,118,110,0.06)}
 .bk-service-card:hover::before{opacity:1}
-.bk-service-card.selected{border-color:var(--gold);background:rgba(200,146,42,0.1);box-shadow:0 0 0 1px rgba(200,146,42,0.2)}
+.bk-service-card.selected{border-color:var(--gold);background:rgba(15,118,110,0.1);box-shadow:0 0 0 1px rgba(15,118,110,0.2)}
 .bk-service-card.selected::before{opacity:1}
 .bk-service-badge{display:inline-flex;align-items:center;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.18rem 0.55rem;border-radius:2rem;margin-bottom:0.65rem}
-.bk-service-badge.popular{background:rgba(200,146,42,0.2);color:var(--gold-light)}
-.bk-service-badge.best{background:rgba(200,146,42,0.9);color:#fff}
+.bk-service-badge.popular{background:rgba(15,118,110,0.2);color:var(--gold-light)}
+.bk-service-badge.best{background:rgba(15,118,110,0.9);color:#fff}
 .bk-service-badge.interior{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5)}
 .bk-service-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:0.2rem}
 .bk-service-desc{font-size:0.78rem;color:rgba(255,255,255,0.45);line-height:1.5;margin-bottom:0.75rem}
@@ -1771,8 +1613,8 @@ document.querySelectorAll(
 
 /* Promo callout */
 .bk-promo-note{
-  background:linear-gradient(135deg,rgba(200,146,42,0.12),rgba(200,146,42,0.06));
-  border:1px solid rgba(200,146,42,0.25);border-radius:0.85rem;
+  background:linear-gradient(135deg,rgba(15,118,110,0.12),rgba(15,118,110,0.06));
+  border:1px solid rgba(15,118,110,0.25);border-radius:0.85rem;
   padding:0.85rem 1.1rem;display:flex;align-items:center;gap:0.75rem;
   font-size:0.82rem;color:rgba(255,255,255,0.7);
 }
@@ -1785,8 +1627,8 @@ document.querySelectorAll(
   border-radius:1rem;padding:1.1rem 1.25rem;cursor:pointer;transition:all 0.2s;
   display:flex;align-items:center;gap:0.85rem
 }
-.bk-veh-card:hover{border-color:rgba(200,146,42,0.35);background:rgba(200,146,42,0.05)}
-.bk-veh-card.selected{border-color:var(--gold);background:rgba(200,146,42,0.1)}
+.bk-veh-card:hover{border-color:rgba(15,118,110,0.35);background:rgba(15,118,110,0.05)}
+.bk-veh-card.selected{border-color:var(--gold);background:rgba(15,118,110,0.1)}
 .bk-veh-icon{font-size:1.6rem;flex-shrink:0}
 .bk-veh-info{}
 .bk-veh-name{font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:0.1rem}
@@ -1805,8 +1647,8 @@ document.querySelectorAll(
   border-radius:0.85rem;padding:0.9rem 1.1rem;cursor:pointer;transition:all 0.2s;
   display:flex;align-items:center;justify-content:space-between;gap:1rem
 }
-.bk-addon-item:hover{border-color:rgba(200,146,42,0.3)}
-.bk-addon-item.selected{border-color:rgba(200,146,42,0.6);background:rgba(200,146,42,0.08)}
+.bk-addon-item:hover{border-color:rgba(15,118,110,0.3)}
+.bk-addon-item.selected{border-color:rgba(15,118,110,0.6);background:rgba(15,118,110,0.08)}
 .bk-addon-left{display:flex;align-items:center;gap:0.85rem}
 .bk-addon-icon{font-size:1.2rem}
 .bk-addon-name{font-size:0.88rem;font-weight:600;color:#fff;margin-bottom:0.1rem}
@@ -1828,7 +1670,7 @@ document.querySelectorAll(
   border-radius:0.75rem;padding:0.8rem 1rem;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;
   outline:none;transition:border-color 0.2s,background 0.2s;-webkit-appearance:none;appearance:none
 }
-.bk-input:focus,.bk-select:focus{border-color:rgba(200,146,42,0.5);background:rgba(200,146,42,0.05)}
+.bk-input:focus,.bk-select:focus{border-color:rgba(15,118,110,0.5);background:rgba(15,118,110,0.05)}
 .bk-input::placeholder{color:rgba(255,255,255,0.25)}
 .bk-select option{background:#1c2030;color:#fff}
 
@@ -1837,8 +1679,8 @@ document.querySelectorAll(
   background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);
   border-radius:0.75rem;padding:0.65rem 0.4rem;cursor:pointer;text-align:center;transition:all 0.2s
 }
-.bk-date-slot:hover{border-color:rgba(200,146,42,0.35)}
-.bk-date-slot.selected{border-color:var(--gold);background:rgba(200,146,42,0.12)}
+.bk-date-slot:hover{border-color:rgba(15,118,110,0.35)}
+.bk-date-slot.selected{border-color:var(--gold);background:rgba(15,118,110,0.12)}
 .bk-date-slot-day{font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.2rem}
 .bk-date-slot-num{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:#fff}
 .bk-date-slot.selected .bk-date-slot-day{color:var(--gold)}
@@ -1850,8 +1692,8 @@ document.querySelectorAll(
   border-radius:0.6rem;padding:0.55rem;cursor:pointer;text-align:center;
   font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.55);transition:all 0.2s
 }
-.bk-time-slot:hover{border-color:rgba(200,146,42,0.35);color:#fff}
-.bk-time-slot.selected{border-color:var(--gold);background:rgba(200,146,42,0.12);color:var(--gold-light)}
+.bk-time-slot:hover{border-color:rgba(15,118,110,0.35);color:#fff}
+.bk-time-slot.selected{border-color:var(--gold);background:rgba(15,118,110,0.12);color:var(--gold-light)}
 .bk-time-slot.unavailable{opacity:0.3;cursor:not-allowed;pointer-events:none}
 
 /* Contact step */
@@ -1867,13 +1709,13 @@ document.querySelectorAll(
 .bk-summary-row:last-child{border-bottom:none}
 .bk-summary-key{font-size:0.82rem;color:rgba(255,255,255,0.45)}
 .bk-summary-val{font-size:0.88rem;font-weight:600;color:#fff}
-.bk-summary-total{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(200,146,42,0.2);display:flex;justify-content:space-between;align-items:baseline}
+.bk-summary-total{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(15,118,110,0.2);display:flex;justify-content:space-between;align-items:baseline}
 .bk-summary-total-label{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45)}
 .bk-summary-total-price{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold-light)}
 
 .bk-guarantee{
   display:flex;align-items:center;gap:0.75rem;
-  background:rgba(200,146,42,0.07);border:1px solid rgba(200,146,42,0.18);
+  background:rgba(15,118,110,0.07);border:1px solid rgba(15,118,110,0.18);
   border-radius:0.85rem;padding:0.85rem 1.1rem;margin-bottom:1.25rem;
   font-size:0.8rem;color:rgba(255,255,255,0.6)
 }
@@ -1937,7 +1779,7 @@ document.querySelectorAll(
 .bk-success-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:#fff;margin-bottom:0.75rem;line-height:1.2}
 .bk-success-sub{font-size:0.95rem;color:rgba(255,255,255,0.5);line-height:1.7;max-width:26rem;margin:0 auto 1.75rem}
 .bk-success-detail{
-  background:rgba(200,146,42,0.09);border:1px solid rgba(200,146,42,0.22);
+  background:rgba(15,118,110,0.09);border:1px solid rgba(15,118,110,0.22);
   border-radius:1rem;padding:1.25rem;text-align:left;margin-bottom:1.25rem
 }
 .bk-success-detail-row{display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.85rem}
@@ -1960,9 +1802,9 @@ document.querySelectorAll(
 .bk-next{
   background:var(--gold);color:#fff;font-family:'Syne',sans-serif;font-size:0.875rem;font-weight:800;
   padding:0.7rem 1.75rem;border-radius:0.65rem;border:none;cursor:pointer;
-  transition:all 0.25s;box-shadow:0 4px 18px rgba(200,146,42,0.35);letter-spacing:0.02em
+  transition:all 0.25s;box-shadow:0 4px 18px rgba(15,118,110,0.35);letter-spacing:0.02em
 }
-.bk-next:hover{background:var(--gold-light);box-shadow:0 6px 24px rgba(200,146,42,0.5);transform:translateY(-1px)}
+.bk-next:hover{background:var(--gold-light);box-shadow:0 6px 24px rgba(15,118,110,0.5);transform:translateY(-1px)}
 .bk-next:disabled{opacity:0.4;cursor:not-allowed;transform:none}
 
 /* ── Payment Method ── */
@@ -1978,8 +1820,8 @@ document.querySelectorAll(
   border-radius: 0.85rem; padding: 0.85rem 0.6rem; cursor: pointer;
   transition: all 0.22s; text-align: center; position: relative;
 }
-.bk-pay-card:hover { border-color: rgba(200,146,42,0.4); background: rgba(200,146,42,0.06); }
-.bk-pay-card.selected { border-color: var(--gold); background: rgba(200,146,42,0.1); box-shadow: 0 0 0 1px rgba(200,146,42,0.18); }
+.bk-pay-card:hover { border-color: rgba(15,118,110,0.4); background: rgba(15,118,110,0.06); }
+.bk-pay-card.selected { border-color: var(--gold); background: rgba(15,118,110,0.1); box-shadow: 0 0 0 1px rgba(15,118,110,0.18); }
 .bk-pay-card-icon { font-size: 1.6rem; margin-bottom: 0.35rem; display: block; }
 .bk-pay-card-name { font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700; color: #fff; }
 .bk-pay-card-sub { font-size: 0.66rem; color: rgba(255,255,255,0.35); margin-top: 0.15rem; }
@@ -1995,7 +1837,7 @@ document.querySelectorAll(
 /* In-person note */
 .bk-inperson-note {
   display: none; align-items: flex-start; gap: 0.65rem;
-  background: rgba(200,146,42,0.07); border: 1px solid rgba(200,146,42,0.2);
+  background: rgba(15,118,110,0.07); border: 1px solid rgba(15,118,110,0.2);
   border-radius: 0.85rem; padding: 0.9rem 1rem; margin-bottom: 0.5rem;
   font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.55;
 }
@@ -2538,8 +2380,8 @@ var bkData = {
 // Sandbox values — replace with your real Application ID / Location ID
 // from developer.squareup.com, and swap the <script src> above to the
 // production squarecdn.com URL when you go live.
-var SQUARE_APP_ID      = 'sq0idp-USfRTKigrPu1I5HjPRyv4Q';
-var SQUARE_LOCATION_ID = 'L038WP4AT7TKY';
+var SQUARE_APP_ID      = 'sandbox-sq0idb-cYYVJWvTbhmVa_zIrELwWg';
+var SQUARE_LOCATION_ID = 'LPP05WEMTD2QF';
 
 var squareCard = null;      // holds the initialized Square Card instance
 var squarePayments = null;  // holds the Square payments object
