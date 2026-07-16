@@ -1436,16 +1436,22 @@ function selectPricingVehicle(el, size) {
 // Called by the pricing cards' CTA buttons — opens the booking modal
 // pre-loaded with the package + vehicle size already chosen on this page.
 function openBookingForPackage(packageName, packageType) {
-  var d = PRICING_DATA[currentPricingVehicle];
   if (currentPricingVehicle === 'sprinter') {
     // No fixed price to check out with — route to a call instead.
     window.location.href = 'tel:+18001234567';
     return;
   }
+  var pkgKey = packageName === 'The Standard' ? 'standard' : 'interior';
+
   openBooking();
-  // Pre-select matching service + vehicle size once modal is open
-  bkData.vehicleSizeKey = currentPricingVehicle;
-  bkData.vehicleSizeLabel = d.label;
+
+  // Highlight the matching vehicle-size card and package card so the
+  // modal visually reflects what they already picked on the pricing page.
+  var vehCard = document.querySelector('#bk-vehsize-grid [data-veh-key="' + currentPricingVehicle + '"]');
+  if (vehCard) selectVehicleSize(vehCard, currentPricingVehicle);
+
+  var pkgCard = document.querySelector('#bk-package-grid [data-pkg-key="' + pkgKey + '"]');
+  if (pkgCard) selectPackage(pkgCard, pkgKey);
 }
 
 renderPricingCards();
@@ -1911,88 +1917,38 @@ document.querySelectorAll(
     <!-- Body -->
     <div class="bk-body">
 
-      <!-- STEP 1: Service -->
+      <!-- STEP 1: Vehicle Size -->
       <div class="bk-panel active" id="bk-step-1">
-        <div class="bk-panel-title">Choose Your Service</div>
-        <div class="bk-service-grid">
+        <div class="bk-panel-title">Your Vehicle Size</div>
+        <div class="bk-service-grid" id="bk-vehsize-grid">
 
-          <div class="bk-service-card" onclick="selectService(this,'The Base','Interior & Exterior',84,168,'1.5 hrs')">
+          <div class="bk-service-card selected" data-veh-key="sedan" onclick="selectVehicleSize(this,'sedan')">
             <div class="bk-check-ring"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="bk-service-badge interior">Interior + Exterior</div>
-            <div class="bk-service-name">The Base</div>
-            <div class="bk-service-desc">Perfect upkeep detail — thorough clean inside and out for well-maintained vehicles.</div>
-            <div class="bk-service-price">
-              <div class="bk-service-price-now">$84</div>
-              <div class="bk-service-price-was">$168</div>
-            </div>
-            <div class="bk-service-duration">⏱ 1.5 hrs</div>
+            <div class="bk-service-name">Coupe / Sedan</div>
+            <div class="bk-service-desc">Sedan, coupe, hatchback, small crossover.</div>
           </div>
 
-          <div class="bk-service-card selected" onclick="selectService(this,'The Standard','Interior & Exterior',114,228,'2.5–3 hrs')">
+          <div class="bk-service-card" data-veh-key="suv5" onclick="selectVehicleSize(this,'suv5')">
             <div class="bk-check-ring"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="bk-service-badge best">⭐ Most Popular</div>
-            <div class="bk-service-name">The Standard</div>
-            <div class="bk-service-desc">Comprehensive detail with steam cleaning, leather conditioning & protection seal.</div>
-            <div class="bk-service-price">
-              <div class="bk-service-price-now">$114</div>
-              <div class="bk-service-price-was">$228</div>
-            </div>
-            <div class="bk-service-duration">⏱ 2.5–3 hrs</div>
+            <div class="bk-service-name">5-Seat SUV / Truck</div>
+            <div class="bk-service-desc">Standard SUV, crossover, pickup truck.</div>
           </div>
 
-          <div class="bk-service-card" onclick="selectService(this,'The Works','Interior & Exterior',175,350,'4–5 hrs')">
+          <div class="bk-service-card" data-veh-key="suv7" onclick="selectVehicleSize(this,'suv7')">
             <div class="bk-check-ring"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="bk-service-badge popular">Premium</div>
-            <div class="bk-service-name">The Works</div>
-            <div class="bk-service-desc">Ultimate full-detail experience. Paint decontamination, hot-water extraction &amp; full decontamination wash — the complete package.</div>
-            <div class="bk-service-price">
-              <div class="bk-service-price-now">$175</div>
-              <div class="bk-service-price-was">$350</div>
-            </div>
-            <div class="bk-service-duration">⏱ 4–5 hrs</div>
+            <div class="bk-service-name">7-Seat SUV / Van</div>
+            <div class="bk-service-desc">Larger SUV, minivan, full-size van.</div>
           </div>
 
-          <div class="bk-service-card" onclick="selectService(this,'Interior Only','Interior Only',74,148,'1.5–2 hrs')">
+          <div class="bk-service-card" data-veh-key="sprinter" onclick="selectVehicleSize(this,'sprinter')">
             <div class="bk-check-ring"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="bk-service-badge interior">Interior Only</div>
-            <div class="bk-service-name">Interior Only</div>
-            <div class="bk-service-desc">Deep interior clean — vacuum, steam, leather care, windows, and full surface wipe down.</div>
-            <div class="bk-service-price">
-              <div class="bk-service-price-now">$74</div>
-              <div class="bk-service-price-was">$148</div>
-            </div>
-            <div class="bk-service-duration">⏱ 1.5–2 hrs</div>
+            <div class="bk-service-name">Sprinter / Oversized</div>
+            <div class="bk-service-desc">Sprinter van or oversized vehicle — custom quote by phone.</div>
           </div>
 
         </div>
-        <div class="bk-promo-note">
-          🔥 <span><strong>Founding Member Deal:</strong> All prices already include your 50% off — only <strong id="bk-spots-left">97</strong> spots remaining!</span>
-        </div>
-      </div>
 
-      <!-- STEP 2: Vehicle -->
-      <div class="bk-panel" id="bk-step-2">
-        <div class="bk-panel-title">Your Vehicle</div>
-        <div style="margin-bottom:1.25rem">
-          <label class="bk-label">Vehicle Size</label>
-          <div class="bk-vehicle-row">
-            <div class="bk-veh-card selected" id="vsize-std" onclick="selectVehSize('Standard','Standard vehicle (no surcharge)')">
-              <div class="bk-veh-icon">🚗</div>
-              <div class="bk-veh-info">
-                <div class="bk-veh-name">Standard</div>
-                <div class="bk-veh-sub">Sedan, coupe, hatchback</div>
-              </div>
-            </div>
-            <div class="bk-veh-card" id="vsize-xl" onclick="selectVehSize('XL','SUV, truck, van, full-size')">
-              <div class="bk-veh-icon">🚙</div>
-              <div class="bk-veh-info">
-                <div class="bk-veh-name">XL Vehicle</div>
-                <div class="bk-veh-sub">SUV, truck, van · +$15</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="bk-field-group">
+        <div class="bk-field-group" style="margin-top:1.25rem">
           <label class="bk-label">Vehicle Type</label>
           <select class="bk-select" id="bk-veh-type" onchange="bkData.vehicleType=this.value">
             <option value="">Select your vehicle type…</option>
@@ -2008,20 +1964,52 @@ document.querySelectorAll(
             <option>Luxury / High-End</option>
           </select>
         </div>
-        <div class="bk-xl-note" id="bk-xl-note" style="display:none">
-          ℹ️ XL surcharge of <strong style="color:var(--gold-light)">+$15</strong> (50% off original $30) has been applied.
+
+        <div class="bk-xl-note" id="bk-sprinter-note" style="display:none">
+          ℹ️ Sprinter / oversized vehicles need a custom quote — tap <strong style="color:var(--gold-light)">Next</strong> and we'll call you instead of booking online.
+        </div>
+
+        <div class="bk-promo-note">
+          🔥 <span><strong>Founding Member Deal:</strong> All prices already include your 50% off — only <strong id="bk-spots-left">97</strong> spots remaining!</span>
+        </div>
+      </div>
+
+      <!-- STEP 2: Package -->
+      <div class="bk-panel" id="bk-step-2">
+        <div class="bk-panel-title">Choose Your Package</div>
+        <div class="bk-service-grid" id="bk-package-grid">
+
+          <div class="bk-service-card selected" data-pkg-key="standard" onclick="selectPackage(this,'standard')">
+            <div class="bk-check-ring"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="bk-service-badge best">⭐ Most Popular</div>
+            <div class="bk-service-name">The Standard</div>
+            <div class="bk-service-desc">Interior &amp; exterior detail — steam cleaning, leather conditioning, high-gloss wax seal.</div>
+            <div class="bk-service-price">
+              <div class="bk-service-price-now" id="pkg-standard-price">$229</div>
+            </div>
+            <div class="bk-service-duration" id="pkg-standard-duration">⏱ 2.5 Hours</div>
+          </div>
+
+          <div class="bk-service-card" data-pkg-key="interior" onclick="selectPackage(this,'interior')">
+            <div class="bk-check-ring"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="bk-service-badge interior">Interior Only</div>
+            <div class="bk-service-name">Interior Detail</div>
+            <div class="bk-service-desc">Deep interior clean — steam, leather care, windows, full surface wipe down.</div>
+            <div class="bk-service-price">
+              <div class="bk-service-price-now" id="pkg-interior-price">$179</div>
+            </div>
+            <div class="bk-service-duration" id="pkg-interior-duration">⏱ 2 Hours</div>
+          </div>
+
+        </div>
+        <div class="bk-xl-note" id="bk-quote-note" style="display:none">
+          ℹ️ This vehicle size needs a custom quote — we'll confirm your exact price by phone before your appointment.
         </div>
       </div>
 
       <!-- STEP 3: Add-Ons -->
       <div class="bk-panel" id="bk-step-3">
         <div class="bk-panel-title">Optional Add-Ons <span style="color:rgba(255,255,255,0.3);font-weight:400;text-transform:none;letter-spacing:0">(select any)</span></div>
-
-        <!-- Notice banner: appears only when selected package already covers some add-ons -->
-        <div class="bk-included-notice" id="bk-included-notice">
-          <span class="bk-included-notice-icon">✅</span>
-          <span id="bk-included-notice-text">Your selected package already covers some of these services — those are marked <strong>Already Included</strong> below so you're never charged twice.</span>
-        </div>
 
         <div class="bk-addon-list">
           <div class="bk-addon-item" id="pet-hair-addon" data-addon-name="Pet Hair Removal" onclick="togglePetHairAddon(this)">
@@ -2032,7 +2020,6 @@ document.querySelectorAll(
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:0.85rem">
-              <div class="bk-included-badge">Already Included</div>
               <div class="bk-addon-price" id="pet-hair-price">+$29</div>
               <div class="bk-addon-checkbox"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </div>
@@ -2046,7 +2033,6 @@ document.querySelectorAll(
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:0.85rem">
-              <div class="bk-included-badge">Already Included</div>
               <div class="bk-addon-price">+$35</div>
               <div class="bk-addon-checkbox"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </div>
@@ -2060,7 +2046,6 @@ document.querySelectorAll(
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:0.85rem">
-              <div class="bk-included-badge">Already Included</div>
               <div class="bk-addon-price">+$50</div>
               <div class="bk-addon-checkbox"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </div>
@@ -2074,7 +2059,6 @@ document.querySelectorAll(
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:0.85rem">
-              <div class="bk-included-badge">Already Included</div>
               <div class="bk-addon-price">+$50</div>
               <div class="bk-addon-checkbox"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </div>
@@ -2088,7 +2072,6 @@ document.querySelectorAll(
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:0.85rem">
-              <div class="bk-included-badge">Already Included</div>
               <div class="bk-addon-price">+$50</div>
               <div class="bk-addon-checkbox"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </div>
@@ -2102,7 +2085,6 @@ document.querySelectorAll(
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:0.85rem">
-              <div class="bk-included-badge">Already Included</div>
               <div class="bk-addon-price">+$50</div>
               <div class="bk-addon-checkbox"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </div>
@@ -2116,7 +2098,6 @@ document.querySelectorAll(
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:0.85rem">
-              <div class="bk-included-badge">Already Included</div>
               <div class="bk-addon-price">+$60</div>
               <div class="bk-addon-checkbox"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </div>
@@ -2130,7 +2111,6 @@ document.querySelectorAll(
               </div>
             </div>
             <div style="display:flex;align-items:center;gap:0.85rem">
-              <div class="bk-included-badge">Already Included</div>
               <div class="bk-addon-price">+$100</div>
               <div class="bk-addon-checkbox"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             </div>
@@ -2204,16 +2184,8 @@ document.querySelectorAll(
 
         <div class="bk-field-group">
           <label class="bk-label">Preferred Time</label>
-          <div class="bk-time-grid">
-            <div class="bk-time-slot unavailable" data-time="7:00 AM" data-perm-unavailable="1">7:00 AM<br><span style="font-size:0.65rem;opacity:0.6">Booked</span></div>
-            <div class="bk-time-slot" data-time="8:00 AM" onclick="selectTime(this,'8:00 AM')">8:00 AM</div>
-            <div class="bk-time-slot" data-time="9:00 AM" onclick="selectTime(this,'9:00 AM')">9:00 AM</div>
-            <div class="bk-time-slot" data-time="10:00 AM" onclick="selectTime(this,'10:00 AM')">10:00 AM</div>
-            <div class="bk-time-slot" data-time="11:00 AM" onclick="selectTime(this,'11:00 AM')">11:00 AM</div>
-            <div class="bk-time-slot unavailable" data-time="12:00 PM" data-perm-unavailable="1">12:00 PM<br><span style="font-size:0.65rem;opacity:0.6">Booked</span></div>
-            <div class="bk-time-slot" data-time="1:00 PM" onclick="selectTime(this,'1:00 PM')">1:00 PM</div>
-            <div class="bk-time-slot" data-time="2:00 PM" onclick="selectTime(this,'2:00 PM')">2:00 PM</div>
-            <div class="bk-time-slot" data-time="3:00 PM" onclick="selectTime(this,'3:00 PM')">3:00 PM</div>
+          <div class="bk-time-grid" id="bk-time-grid">
+            <div class="bk-time-note" id="bk-time-note" style="opacity:0.6;font-size:0.85rem;grid-column:1/-1">Pick a date above to see real-time availability.</div>
           </div>
         </div>
 
@@ -2348,19 +2320,21 @@ document.querySelectorAll(
 var bkCurrentStep = 1;
 var bkTotalSteps  = 5;
 var bkData = {
-  service:      'The Standard',
-  serviceType:  'Interior & Exterior',
-  servicePrice: 114,
-  serviceOriginal: 228,
-  duration:     '2.5–3 hrs',
-  vehicleSize:  'Standard',
-  vehicleXLSurcharge: 0,
-  vehicleType:  '',
-  vehicleColor: '',
+  vehicleSizeKey:   'sedan',
+  vehicleSizeLabel: 'Coupe / Sedan',
+  vehicleType:      '',
+  package:          'standard',
+  packageLabel:     'The Standard',
+  servicePrice:     PRICING_DATA.sedan.standard.price,
+  duration:         PRICING_DATA.sedan.standard.duration,
+  durationMinutes:  parseDurationToMinutes(PRICING_DATA.sedan.standard.duration),
+  variationId:      PRICING_DATA.sedan.standard.variationId,
   addons:       [],
   addonTotal:   0,
-  date:         '',
-  time:         '',
+  date:         '',       // display string, e.g. "7/20"
+  dateISO:      '',       // "2026-07-20", used for the availability API call
+  time:         '',       // display string, e.g. "9:00 AM"
+  startAtISO:   '',       // exact Square-provided timestamp for the chosen slot
   location:     '',
   address:      '',
   firstName:    '',
@@ -2436,50 +2410,13 @@ async function chargeCardForBooking(amountDollars) {
   return result;
 }
 
-// ── Fetch booked time slots for a given date via our Netlify function ──
-function fetchBookedSlots(dateStr, callback) {
-  fetch('/.netlify/functions/check-availability?date=' + encodeURIComponent(dateStr))
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    callback(data.bookedTimes || []);
-  })
-  .catch(function() { callback([]); });
-}
-
-// ── Apply Airtable-booked slots to the time grid ─────────────────
-function applyBookedSlots(bookedTimes) {
-  document.querySelectorAll('.bk-time-slot').forEach(function(s) {
-    // Skip slots hardcoded as permanently unavailable in HTML
-    if (s.getAttribute('data-perm-unavailable') === '1') return;
-    var t = s.getAttribute('data-time');
-    if (!t) return;
-    if (bookedTimes.indexOf(t) > -1) {
-      // Mark this slot as booked from Airtable
-      s.setAttribute('data-airtable-booked', '1');
-      s.classList.add('unavailable');
-      s.classList.remove('selected');
-      s.style.pointerEvents = 'none';
-      s.innerHTML = t + '<br><span style="font-size:0.65rem;opacity:0.6">Booked</span>';
-      if (bkData.time === t) bkData.time = ''; // clear if this was selected
-    } else {
-      // Restore slot if it was previously marked by Airtable
-      if (s.getAttribute('data-airtable-booked') === '1') {
-        s.removeAttribute('data-airtable-booked');
-        s.classList.remove('unavailable', 'selected');
-        s.style.pointerEvents = '';
-        s.innerHTML = t;
-        s.onclick = (function(el, time) { return function() { selectTime(el, time); }; })(s, t);
-      }
-    }
-  });
-}
-
 function openBooking() {
   document.getElementById('bkOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   // Sync spots remaining
   var rem = document.getElementById('spots-bar');
   if (rem) document.getElementById('bk-spots-left').textContent = rem.textContent;
+  renderPackageCards();
   buildDateGrid();
 }
 
@@ -2492,104 +2429,95 @@ function handleOverlayClick(e) {
   if (e.target === document.getElementById('bkOverlay')) closeBooking();
 }
 
-// ── Service Selection ───────────────────────────────────────────
-//
-// PACKAGE → INCLUDED ADD-ONS MAP
-// Derived from reading every service feature in each package:
-//
-// THE BASE (Interior: vacuum, air blowout, wipe surfaces, spray&wipe mats/seats/windows, trunk)
-//          (Exterior: hand wash, wheel wells, rims/tires, trim, door jambs, windows)
-//   → No add-ons from the list are duplicated. All add-ons are genuine extras.
-//
-// THE STANDARD (All of The Base +
-//   Interior: 2-step deep vacuum, full steam cleaning of seats/carpets/mats/door panels/console,
-//             light stain treatment, leather deep clean & conditioning, dress plastic surfaces)
-//   (Exterior: pre-treatment soak for bugs/debris, high-gloss spray wax)
-//   → Still no add-on duplicates. Steam cleaning covers the vehicle's built-in surfaces;
-//     add-ons like Headliner, Car Seats, Pet Hair, Ozone etc. remain distinct extras.
-//
-// THE WORKS (All of The Standard +
-//   Interior: interior shampoo & extraction (carpets/mats/seats), heavy stain removal)
-//   (Exterior: full decontamination wash — iron, tar & road contamination removal)
-//   → "Full Decontamination Wash" IS the clay bar process (iron remover + clay decon).
-//     Clay Bar Treatment add-on is therefore already covered. Mark as included.
+// ── Vehicle Size + Package Selection ─────────────────────────────
+// Both steps read straight from PRICING_DATA (the same object that
+// drives the pricing page), so there's one source of truth for
+// price / duration / Square variation ID — no drift between the two.
 
-var includedAddonsMap = {
-  'The Base':     [],
-  'The Standard': [],
-  'The Works':    ['Clay Bar Treatment']
-};
-
-function selectService(el, name, type, price, orig, dur) {
-  document.querySelectorAll('.bk-service-card').forEach(function(c){c.classList.remove('selected')});
-  el.classList.add('selected');
-  bkData.service         = name;
-  bkData.serviceType     = type;
-  bkData.servicePrice    = price;
-  bkData.serviceOriginal = orig;
-  bkData.duration        = dur;
-
-  // ── Apply "Already Included" logic ──
-  var included = includedAddonsMap[name] || [];
-  var notice   = document.getElementById('bk-included-notice');
-
-  // Reset all items to normal state first
-  document.querySelectorAll('.bk-addon-item[data-addon-name]').forEach(function(item) {
-    var addonName = item.getAttribute('data-addon-name');
-    item.classList.remove('included-in-package');
-
-    // If it was previously force-locked as included, deselect & refund
-    var idx = bkData.addons.findIndex(function(a){ return a.name === addonName; });
-    if (included.indexOf(addonName) > -1) {
-      // Mark as included — remove from cart if it was selected
-      item.classList.add('included-in-package');
-      item.classList.remove('selected');
-      if (idx > -1) {
-        bkData.addonTotal -= bkData.addons[idx].price;
-        bkData.addons.splice(idx, 1);
-      }
-    }
-  });
-
-  // Show or hide the notice banner
-  if (included.length > 0) {
-    notice.classList.add('visible');
-    document.getElementById('bk-included-notice-text').innerHTML =
-      'Your <strong>' + name + '</strong> package already covers ' +
-      included.map(function(n){ return '<strong>' + n + '</strong>'; }).join(' and ') +
-      ' — marked below so you\'re never charged twice.';
-  } else {
-    notice.classList.remove('visible');
-  }
+function parseDurationToMinutes(str) {
+  if (!str) return 0;
+  var num = parseFloat(str);
+  return Math.round(num * 60);
 }
 
-// ── Vehicle Selection ───────────────────────────────────────────
-function selectVehSize(size, label) {
-  bkData.vehicleSize = size;
-  bkData.vehicleXLSurcharge = size === 'XL' ? 15 : 0;
-  document.getElementById('vsize-std').classList.toggle('selected', size==='Standard');
-  document.getElementById('vsize-xl').classList.toggle('selected',  size==='XL');
-  document.getElementById('bk-xl-note').style.display = size==='XL' ? 'flex' : 'none';
+function selectVehicleSize(el, key) {
+  document.querySelectorAll('#bk-vehsize-grid .bk-service-card').forEach(function(c){c.classList.remove('selected')});
+  el.classList.add('selected');
+  bkData.vehicleSizeKey   = key;
+  bkData.vehicleSizeLabel = PRICING_DATA[key].label;
 
-  // Update Pet Hair Removal price dynamically
-  var petHairPrice = size === 'XL' ? 69 : 29;
+  var sprinterNote = document.getElementById('bk-sprinter-note');
+  sprinterNote.style.display = key === 'sprinter' ? 'flex' : 'none';
+
+  // Refresh Step 2's package cards to reflect this vehicle size's pricing
+  renderPackageCards();
+
+  // Keep whichever package was already selected (defaults to 'standard')
+  applyPackageSelection(bkData.package);
+
+  // Pet Hair Removal price scales with vehicle size
+  var petHairPrice = petHairPriceForSize(key);
   var priceEl = document.getElementById('pet-hair-price');
   if (priceEl) priceEl.textContent = '+$' + petHairPrice;
-
-  // If Pet Hair was already added to cart, adjust the price
   var idx = bkData.addons.findIndex(function(a){ return a.name === 'Pet Hair Removal'; });
   if (idx > -1) {
-    var oldPrice = bkData.addons[idx].price;
-    bkData.addonTotal = bkData.addonTotal - oldPrice + petHairPrice;
+    bkData.addonTotal = bkData.addonTotal - bkData.addons[idx].price + petHairPrice;
     bkData.addons[idx].price = petHairPrice;
   }
 }
 
+function petHairPriceForSize(key) {
+  // Assumption: sedan stays at the original $29; every larger category
+  // steps up to $69. Adjust here if you price pet-hair removal
+  // differently per size — this wasn't specified elsewhere.
+  return key === 'sedan' ? 29 : 69;
+}
+
+function renderPackageCards() {
+  var d = PRICING_DATA[bkData.vehicleSizeKey];
+  ['standard', 'interior'].forEach(function(pkgKey) {
+    var info = d[pkgKey];
+    var priceEl = document.getElementById('pkg-' + pkgKey + '-price');
+    var durEl   = document.getElementById('pkg-' + pkgKey + '-duration');
+    if (info.price === null) {
+      priceEl.textContent = 'Call for Quote';
+    } else {
+      priceEl.textContent = '$' + info.price;
+    }
+    durEl.textContent = '⏱ ' + info.duration;
+  });
+}
+
+function applyPackageSelection(pkgKey) {
+  document.querySelectorAll('#bk-package-grid .bk-service-card').forEach(function(c) {
+    c.classList.toggle('selected', c.getAttribute('data-pkg-key') === pkgKey);
+  });
+  selectPackage(document.querySelector('#bk-package-grid [data-pkg-key="' + pkgKey + '"]'), pkgKey, true);
+}
+
+function selectPackage(el, pkgKey, silent) {
+  document.querySelectorAll('#bk-package-grid .bk-service-card').forEach(function(c){c.classList.remove('selected')});
+  if (el) el.classList.add('selected');
+
+  var labels = { standard: 'The Standard', interior: 'Interior Detail' };
+  var info = PRICING_DATA[bkData.vehicleSizeKey][pkgKey];
+
+  bkData.package         = pkgKey;
+  bkData.packageLabel    = labels[pkgKey];
+  bkData.servicePrice    = info.price;
+  bkData.duration        = info.duration;
+  bkData.durationMinutes = parseDurationToMinutes(info.duration);
+  bkData.variationId     = info.variationId;
+
+  var quoteNote = document.getElementById('bk-quote-note');
+  quoteNote.style.display = info.price === null ? 'flex' : 'none';
+}
+
 // ── Pet Hair Toggle (dynamic price based on vehicle size) ───────
 function togglePetHairAddon(el) {
-  var price = bkData.vehicleSize === 'XL' ? 69 : 29;
-  toggleAddon(el, 'Pet Hair Removal', price);
+  toggleAddon(el, 'Pet Hair Removal', petHairPriceForSize(bkData.vehicleSizeKey));
 }
+
 
 // ── Addon Toggle ────────────────────────────────────────────────
 function toggleAddon(el, name, price) {
@@ -2615,74 +2543,79 @@ function buildDateGrid() {
     d.setDate(now.getDate()+i);
     var slot = document.createElement('div');
     slot.className = 'bk-date-slot';
-    var ds = (d.getMonth()+1)+'/'+d.getDate();
+    var ds  = (d.getMonth()+1)+'/'+d.getDate();               // display, e.g. "7/20"
+    var iso = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); // "2026-07-20"
     slot.setAttribute('data-date', ds);
     slot.innerHTML = '<div class="bk-date-slot-day">'+days[d.getDay()]+'</div><div class="bk-date-slot-num">'+(d.getMonth()+1)+'/'+d.getDate()+'</div>';
-    slot.onclick = (function(el,dateStr){return function(){selectDate(el,dateStr)}})(slot,ds);
+    slot.onclick = (function(el,dateStr,isoStr){return function(){selectDate(el,dateStr,isoStr)}})(slot,ds,iso);
     grid.appendChild(slot);
   }
 }
 
-function selectDate(el, ds) {
+// Maps each displayed time label -> the exact Square timestamp for that
+// slot, so submitBooking() sends Square back the identical value it gave
+// us (no re-deriving UTC offsets from a "9:00 AM" string on our end).
+var availableSlotsMap = {};
+
+function selectDate(el, ds, iso) {
   document.querySelectorAll('.bk-date-slot').forEach(function(s){s.classList.remove('selected')});
   el.classList.add('selected');
-  bkData.date = ds;
-  bkData.time = ''; // reset time selection when date changes
+  bkData.date    = ds;
+  bkData.dateISO = iso;
+  bkData.time       = ''; // reset time selection when date changes
+  bkData.startAtISO = '';
 
-  // Reset any previously Airtable-booked slots before fetching new ones
-  document.querySelectorAll('.bk-time-slot').forEach(function(s) {
-    if (s.getAttribute('data-perm-unavailable') === '1') return;
-    if (s.getAttribute('data-airtable-booked') === '1') {
-      var t = s.getAttribute('data-time');
-      s.removeAttribute('data-airtable-booked');
-      s.classList.remove('unavailable', 'selected');
-      s.style.pointerEvents = '';
-      s.innerHTML = t;
-      s.onclick = (function(el2, time) { return function() { selectTime(el2, time); }; })(s, t);
-    }
-  });
-
-  // Fetch real-time availability from Airtable for this date
-  fetchBookedSlots(ds, applyBookedSlots);
+  fetchAvailability(iso, bkData.variationId);
 }
 
-// ── Time Selection with 2-Hour Gap ─────────────────────────────
-// Ordered list of time slots matching the DOM
-var timeSlotOrder = ['7:00 AM','8:00 AM','9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM'];
+// ── Live availability from Square's Bookings API ─────────────────
+function fetchAvailability(dateISO, variationId) {
+  var grid = document.getElementById('bk-time-grid');
+  grid.innerHTML = '<div class="bk-time-note" style="opacity:0.6;font-size:0.85rem;grid-column:1/-1">Checking availability…</div>';
 
-function parseHour(t) {
-  var parts = t.match(/(\d+):(\d+)\s*(AM|PM)/i);
-  var h = parseInt(parts[1]);
-  var pm = parts[3].toUpperCase() === 'PM';
-  if (pm && h !== 12) h += 12;
-  if (!pm && h === 12) h = 0;
-  return h;
+  fetch('/.netlify/functions/check-availability?date=' + encodeURIComponent(dateISO) + '&variationId=' + encodeURIComponent(variationId))
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      renderTimeSlots(data.availableTimes || []);
+    })
+    .catch(function() {
+      grid.innerHTML = '<div class="bk-time-note" style="opacity:0.7;font-size:0.85rem;grid-column:1/-1">Couldn\'t load availability — please try again or call us.</div>';
+    });
+}
+
+// Builds the time-slot buttons straight from what Square just said is
+// actually open — no more static HTML slots, no manual 2-hour-gap
+// guesswork. Square itself won't return a conflicting slot.
+function renderTimeSlots(slots) {
+  var grid = document.getElementById('bk-time-grid');
+  grid.innerHTML = '';
+  availableSlotsMap = {};
+
+  if (!slots.length) {
+    grid.innerHTML = '<div class="bk-time-note" style="opacity:0.7;font-size:0.85rem;grid-column:1/-1">No times available this date — try another date, or call us at (800) 123-4567.</div>';
+    return;
+  }
+
+  slots.forEach(function(slot) {
+    // Supports either a plain string (legacy) or {time, startAt}
+    var label   = (typeof slot === 'string') ? slot : slot.time;
+    var startAt = (typeof slot === 'string') ? null : slot.startAt;
+    availableSlotsMap[label] = startAt;
+
+    var el = document.createElement('div');
+    el.className = 'bk-time-slot';
+    el.setAttribute('data-time', label);
+    el.textContent = label;
+    el.onclick = (function(elRef, t) { return function() { selectTime(elRef, t); }; })(el, label);
+    grid.appendChild(el);
+  });
 }
 
 function selectTime(el, t) {
-  // Reset all non-permanently-unavailable slots
-  document.querySelectorAll('.bk-time-slot').forEach(function(s){
-    if (!s.getAttribute('data-perm-unavailable')) {
-      s.classList.remove('selected','unavailable');
-      s.style.pointerEvents = '';
-    }
-  });
-
+  document.querySelectorAll('.bk-time-slot').forEach(function(s){ s.classList.remove('selected'); });
   el.classList.add('selected');
-  bkData.time = t;
-
-  // Block slots within 2 hours of the selected time
-  var selectedHour = parseHour(t);
-  document.querySelectorAll('.bk-time-slot').forEach(function(s){
-    if (s === el || s.getAttribute('data-perm-unavailable')) return;
-    var slotTime = s.getAttribute('data-time');
-    if (!slotTime) return;
-    var slotHour = parseHour(slotTime);
-    var diff = Math.abs(slotHour - selectedHour);
-    if (diff > 0 && diff < 2) {
-      s.classList.add('unavailable');
-    }
-  });
+  bkData.time       = t;
+  bkData.startAtISO = availableSlotsMap[t] || '';
 }
 
 // ── Progress ────────────────────────────────────────────────────
@@ -2708,19 +2641,23 @@ function bkNext() {
     submitBooking(); return;
   }
 
+  // Validate step 1
+  if (bkCurrentStep === 1) {
+    if (!bkData.vehicleType) {
+      document.getElementById('bk-veh-type').focus();
+      alert('Please select your vehicle type.'); return;
+    }
+    if (bkData.vehicleSizeKey === 'sprinter') {
+      window.location.href = 'tel:+18001234567';
+      return;
+    }
+  }
   // Validate step 4
   if (bkCurrentStep === 4) {
     if (!bkData.location) { alert('Please select a service area.'); return; }
     if (!bkData.date)     { alert('Please select a date.'); return; }
     if (!bkData.time)     { alert('Please select a time.'); return; }
     if (!bkData.address)  { alert('Please enter your address.'); return; }
-  }
-  // Validate step 2
-  if (bkCurrentStep === 2) {
-    if (!bkData.vehicleType) {
-      document.getElementById('bk-veh-type').focus();
-      alert('Please select your vehicle type.'); return;
-    }
   }
 
   // Populate summary before step 5
@@ -2750,22 +2687,19 @@ function goToStep(n) {
 
 // ── Summary Builder ─────────────────────────────────────────────
 function buildSummary() {
-  var total = bkData.servicePrice + bkData.vehicleXLSurcharge + bkData.addonTotal;
+  var total = bkData.servicePrice + bkData.addonTotal;
   var addonLines = bkData.addons.map(function(a){
     return '<div class="bk-summary-row"><span class="bk-summary-key">+ '+a.name+'</span><span class="bk-summary-val">$'+a.price+'</span></div>';
   }).join('');
-  var xlLine = bkData.vehicleXLSurcharge > 0
-    ? '<div class="bk-summary-row"><span class="bk-summary-key">XL Surcharge</span><span class="bk-summary-val">+$'+bkData.vehicleXLSurcharge+'</span></div>'
-    : '';
   document.getElementById('bk-summary-box').innerHTML = '<div class="bk-summary-title">Booking Summary</div>'
-    +'<div class="bk-summary-row"><span class="bk-summary-key">Service</span><span class="bk-summary-val">'+bkData.service+' ('+bkData.serviceType+')</span></div>'
-    +'<div class="bk-summary-row"><span class="bk-summary-key">Vehicle</span><span class="bk-summary-val">'+bkData.vehicleSize+' · '+bkData.vehicleType+'</span></div>'
+    +'<div class="bk-summary-row"><span class="bk-summary-key">Package</span><span class="bk-summary-val">'+bkData.packageLabel+'</span></div>'
+    +'<div class="bk-summary-row"><span class="bk-summary-key">Vehicle</span><span class="bk-summary-val">'+bkData.vehicleSizeLabel+' · '+bkData.vehicleType+'</span></div>'
     +'<div class="bk-summary-row"><span class="bk-summary-key">Date & Time</span><span class="bk-summary-val">'+bkData.date+' at '+bkData.time+'</span></div>'
     +'<div class="bk-summary-row"><span class="bk-summary-key">Location</span><span class="bk-summary-val">'+bkData.location+'</span></div>'
     +'<div class="bk-summary-row"><span class="bk-summary-key">Address</span><span class="bk-summary-val">'+bkData.address+'</span></div>'
     +'<div class="bk-summary-row"><span class="bk-summary-key">Base Price</span><span class="bk-summary-val">$'+bkData.servicePrice+'</span></div>'
-    + xlLine + addonLines
-    +'<div class="bk-summary-total"><span class="bk-summary-total-label">Total Due at Service</span><span class="bk-summary-total-price">$'+total+'</span></div>';
+    + addonLines
+    +'<div class="bk-summary-total"><span class="bk-summary-total-label">Total Due</span><span class="bk-summary-total-price">$'+total+'</span></div>';
 }
 
 // ── Payment Method ───────────────────────────────────────────────
@@ -2802,12 +2736,13 @@ async function submitBooking() {
   if (!bkData.firstName || !bkData.lastName) { alert('Please enter your full name.'); return; }
   if (!bkData.phone) { alert('Please enter your phone number.'); return; }
   if (!bkData.email) { alert('Please enter your email address.'); return; }
+  if (!bkData.startAtISO) { alert('Please select a date and time.'); return; }
   if (!bkData.paymentMethod) { alert('Please select a payment method.'); return; }
   if (bkData.paymentMethod === 'card' && !bkData.cardName) {
     alert('Please enter the name on your card.'); return;
   }
 
-  var total = bkData.servicePrice + bkData.vehicleXLSurcharge + bkData.addonTotal;
+  var total = bkData.servicePrice + bkData.addonTotal;
   var payLabel = bkData.paymentMethod === 'cash'  ? '💵 Cash (at service)'
                : bkData.paymentMethod === 'zelle' ? '📲 Zelle (at service)'
                : '💳 Card (charged)';
@@ -2838,34 +2773,37 @@ async function submitBooking() {
 
   nextBtn.textContent = 'Saving your booking…';
 
-  // Build add-ons string for Airtable
-  var addonStr = bkData.addons.length > 0
-    ? bkData.addons.map(function(a){ return a.name + ' ($' + a.price + ')'; }).join(', ')
-    : 'None';
-
-  // POST booking record via our Netlify function (Airtable token stays server-side)
+  // POST the booking to our Netlify function — it creates the real Square
+  // appointment (using variationId + startAtISO) and logs the extra
+  // detail (address, notes, add-ons) to Airtable for our own records.
   fetch('/.netlify/functions/save-booking', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      'First Name':     bkData.firstName,
-      'Last Name':      bkData.lastName,
-      'Phone':          bkData.phone,
-      'Email':          bkData.email,
-      'Service':        bkData.service,
-      'Service Type':   bkData.serviceType,
-      'Vehicle Size':   bkData.vehicleSize,
-      'Vehicle Type':   bkData.vehicleType,
-      'Add-Ons':        addonStr,
-      'Date':           bkData.date,
-      'Time':           bkData.time,
-      'Location':       bkData.location,
-      'Address':        bkData.address,
-      'Total ($)':      total,
-      'Payment Method': bkData.paymentMethod,
-      'Payment Receipt':paymentReceiptId,
-      'Notes':          bkData.notes || '',
-      'Status':         bkData.paymentMethod === 'card' ? 'Paid' : 'Pending'
+      firstName:        bkData.firstName,
+      lastName:         bkData.lastName,
+      phone:            bkData.phone,
+      email:            bkData.email,
+      variationId:      bkData.variationId,
+      durationMinutes:  bkData.durationMinutes,
+      startAtISO:       bkData.startAtISO,
+      vehicleSizeKey:   bkData.vehicleSizeKey,
+      vehicleSizeLabel: bkData.vehicleSizeLabel,
+      vehicleType:      bkData.vehicleType,
+      package:          bkData.package,
+      packageLabel:     bkData.packageLabel,
+      servicePrice:     bkData.servicePrice,
+      addons:           bkData.addons,
+      addonTotal:       bkData.addonTotal,
+      total:            total,
+      date:             bkData.date,
+      time:             bkData.time,
+      location:         bkData.location,
+      address:          bkData.address,
+      notes:            bkData.notes || '',
+      paymentMethod:    bkData.paymentMethod,
+      paymentReceiptId: paymentReceiptId,
+      status:           bkData.paymentMethod === 'card' ? 'Paid' : 'Pending'
     })
   })
   .then(function(r) { return r.json(); })
@@ -2877,7 +2815,7 @@ async function submitBooking() {
       if (bkData.paymentMethod === 'card') {
         alert('Your payment succeeded, but we hit an error saving your booking details. Please call us at (800) 123-4567 so we can confirm your appointment manually — your payment is safe.');
       } else {
-        alert('Booking could not be saved: ' + data.error.message + '\nPlease try again or call us directly.');
+        alert('Booking could not be saved: ' + (data.error.message || data.error) + '\nPlease try again or call us directly.');
       }
       nextBtn.disabled = false;
       nextBtn.textContent = 'Confirm My Booking ✓';
@@ -2899,7 +2837,7 @@ async function submitBooking() {
 
 function showBookingSuccess(total, payLabel) {
   document.getElementById('bk-success-detail').innerHTML =
-    '<div class="bk-success-detail-row"><span>Service</span><span>'+bkData.service+'</span></div>'
+    '<div class="bk-success-detail-row"><span>Package</span><span>'+bkData.packageLabel+'</span></div>'
    +'<div class="bk-success-detail-row"><span>Date</span><span>'+bkData.date+' at '+bkData.time+'</span></div>'
    +'<div class="bk-success-detail-row"><span>Location</span><span>'+bkData.address+', '+bkData.location+'</span></div>'
    +'<div class="bk-success-detail-row"><span>Total</span><span style="color:var(--gold-light)">$'+total+'</span></div>'
