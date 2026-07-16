@@ -1,58 +1,86 @@
 // netlify/functions/check-availability.js
 //
-// Given a ?date= query param, returns the list of already-booked times
-// for that date. This is the only place the Airtable token is used for
-// reads — it never ships to the browser.
+// Asks Square's Bookings API directly: "for this service variation, on this
+// date, what times are actually open?" Square handles all conflict-checking
+// itself — no more manual Airtable row-scanning, no date-format mismatches.
 //
-// Required Netlify environment variables:
-//   AIRTABLE_TOKEN   – Airtable personal access token (scoped: this base, read-only is enough here)
-//   AIRTABLE_BASE_ID – e.g. appz2DtJwrDFeOVIc
-//   AIRTABLE_TABLE   – e.g. Directory
+// Expects: GET /.netlify/functions/check-availability?date=YYYY-MM-DD&variationId=XXXX
+//   date        — ISO format, e.g. "2026-07-20"
+//   variationId — the Square service variation ID for the chosen package + vehicle size
+//
+// Returns: { availableTimes: ["9:00 AM", "1:00 PM", ...] }
 
 exports.handler = async function (event) {
-  if (event.httpMethod !== 'GET') {
-    return { statusCode: 405, body: JSON.stringify({ error: 'Method not allowed' }) };
+  const { date, variationId } = event.queryStringParameters || {};
+
+  if (!date || !variationId) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: 'Missing required "date" or "variationId" query parameter.' })
+    };
   }
 
-  const dateStr = event.queryStringParameters && event.queryStringParameters.date;
-  if (!dateStr) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'Missing date parameter' }) };
-  }
+  const SQUARE_ENV = process.env.SQUARE_ENV || 'sandbox';
+  const BASE_URL = SQUARE_ENV === 'production'
+    ? 'https://connect.squareup.com'
+    : 'https://connect.squareupsandbox.com';
 
-  const token   = process.env.AIRTABLE_TOKEN;
-  const baseId  = process.env.AIRTABLE_BASE_ID;
-  const table   = process.env.AIRTABLE_TABLE || 'Directory';
-
-  if (!token || !baseId) {
-    console.error('Missing AIRTABLE_TOKEN or AIRTABLE_BASE_ID env vars');
-    return { statusCode: 500, body: JSON.stringify({ error: 'Availability check is not configured yet.' }) };
-  }
-
-  const url = 'https://api.airtable.com/v0/' + baseId + '/' + encodeURIComponent(table);
-  const filter = encodeURIComponent("AND({Date}='" + dateStr + "',{Status}!='Cancelled')");
+  // Search the whole calendar day, in UTC. Square wants a start/end range.
+  const startAt = `${date}T00:00:00Z`;
+  const endAt   = `${date}T23:59:59Z`;
 
   try {
-    const resp = await fetch(url + '?filterByFormula=' + filter + '&fields[]=Time', {
-      headers: { Authorization: 'Bearer ' + token }
+    const resp = await fetch(`${BASE_URL}/v2/bookings/availability/search`, {
+      method: 'POST',
+      headers: {
+        'Square-Version': '2024-01-18',
+        'Authorization': `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query: {
+          filter: {
+            location_id: process.env.SQUARE_LOCATION_ID,
+            start_at_range: { start_at: startAt, end_at: endAt },
+            segment_filters: [
+              {
+                service_variation_id: variationId,
+                team_member_id_filter: {
+                  any: [process.env.SQUARE_TEAM_MEMBER_ID]
+                }
+              }
+            ]
+          }
+        }
+      })
     });
+
     const data = await resp.json();
 
     if (!resp.ok) {
-      console.error('Airtable error', data);
-      return { statusCode: 502, body: JSON.stringify({ error: 'Could not load availability.' }) };
+      console.error('Square availability search error', data);
+      return { statusCode: resp.status, body: JSON.stringify({ error: data }) };
     }
 
-    const times = (data.records || [])
-      .map(function (rec) { return rec.fields && rec.fields.Time; })
-      .filter(Boolean);
+    // Square returns full ISO timestamps for each open slot. Convert to the
+    // "9:00 AM" style your frontend's time grid already uses.
+    const availableTimes = (data.availabilities || []).map(function (slot) {
+      const d = new Date(slot.start_at);
+      return d.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'America/New_York'
+      });
+    });
 
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ bookedTimes: times })
+      body: JSON.stringify({ availableTimes: availableTimes })
     };
   } catch (err) {
-    console.error('check-availability failed', err);
-    return { statusCode: 500, body: JSON.stringify({ error: 'Availability check failed.' }) };
+    console.error('check-availability error', err);
+    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
   }
 };
