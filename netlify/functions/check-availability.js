@@ -62,16 +62,19 @@ exports.handler = async function (event) {
       return { statusCode: resp.status, body: JSON.stringify({ error: data }) };
     }
 
-    // Square returns full ISO timestamps for each open slot. Convert to the
-    // "9:00 AM" style your frontend's time grid already uses.
+    // Square returns full ISO timestamps for each open slot. Keep the raw
+    // timestamp AND a "9:00 AM" display label — the frontend shows the
+    // label but sends the raw timestamp back verbatim when it books,
+    // so there's no risk of a timezone mismatch on the way back in.
     const availableTimes = (data.availabilities || []).map(function (slot) {
       const d = new Date(slot.start_at);
-      return d.toLocaleTimeString('en-US', {
+      const label = d.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
         timeZone: 'America/New_York'
       });
+      return { time: label, startAt: slot.start_at };
     });
 
     return {
