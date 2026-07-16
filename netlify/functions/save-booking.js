@@ -13,15 +13,16 @@
 // already paid for.
 //
 // Expects (POST body):
-//   firstName, lastName, phone, email          — required
-//   variationId, durationMinutes, startAtISO    — required (from the
-//                                                  package + slot chosen)
+//   firstName, lastName, phone, email                  — required
+//   variationId, variationVersion, startAtISO           — required (from the
+//                                                          package + slot chosen)
+//   durationMinutes                                     — optional but recommended
 //   vehicleSizeKey, vehicleSizeLabel, vehicleType,
 //   package, packageLabel, servicePrice,
 //   addons, addonTotal, total,
 //   date, time, location, address, notes,
-//   paymentMethod, paymentReceiptId, status      — optional detail,
-//                                                  logged to Airtable only
+//   paymentMethod, paymentReceiptId, status             — optional detail,
+//                                                          logged to Airtable only
 //
 // Requires these Netlify env vars:
 //   SQUARE_ACCESS_TOKEN, SQUARE_LOCATION_ID, SQUARE_TEAM_MEMBER_ID, SQUARE_ENV
@@ -72,20 +73,18 @@ async function findOrCreateCustomer({ firstName, lastName, phone, email }) {
   return createData.customer.id;
 }
 
-async function createSquareBooking({ customerId, variationId, durationMinutes, startAtISO, notes }) {
+async function createSquareBooking({ customerId, variationId, variationVersion, durationMinutes, startAtISO, notes }) {
   const idempotencyKey = `${startAtISO}-${variationId}-${Date.now()}`;
 
   const segment = {
     team_member_id: process.env.SQUARE_TEAM_MEMBER_ID,
     service_variation_id: variationId,
+    // Square requires this to match the exact catalog version the
+    // variation was at when it was fetched. Without it, booking
+    // creation fails with "service_variation_version required" — this
+    // was the root cause of the earlier errors.
+    service_variation_version: variationVersion,
   };
-  // Square's segment schema also accepts service_variation_version for
-  // strict catalog-version matching. We don't currently track that
-  // version number anywhere in the frontend's PRICING_DATA, so it's
-  // omitted here — Square has accepted booking creation without it in
-  // testing, but if you see a "service_variation_version required" error,
-  // that's the fix: re-run list-catalog.js, grab each variation's
-  // top-level "version" field, and pass it through here.
   if (durationMinutes) segment.duration_minutes = durationMinutes;
 
   const bookingRes = await fetch(`${SQUARE_BASE_URL}/v2/bookings`, {
@@ -168,8 +167,11 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON body' }) };
   }
 
-  const required = ['firstName', 'lastName', 'phone', 'email', 'variationId', 'startAtISO'];
-  const missing = required.filter((k) => !body[k]);
+  // NOTE: variationVersion is required (this is the fix). Checked with
+  // a custom test below instead of the blanket !body[k] check, since a
+  // legitimate version number or duration could in theory be 0/falsy.
+  const required = ['firstName', 'lastName', 'phone', 'email', 'variationId', 'variationVersion', 'startAtISO'];
+  const missing = required.filter((k) => body[k] === undefined || body[k] === null || body[k] === '');
   if (missing.length > 0) {
     return {
       statusCode: 400,
@@ -182,6 +184,7 @@ exports.handler = async (event) => {
     const booking = await createSquareBooking({
       customerId,
       variationId: body.variationId,
+      variationVersion: body.variationVersion,
       durationMinutes: body.durationMinutes,
       startAtISO: body.startAtISO,
       notes: body.notes,
