@@ -39,10 +39,36 @@ exports.handler = async function (event) {
       };
     });
 
+    // Also fetch locations
+    const locResp = await fetch(`${BASE_URL}/v2/locations`, {
+      headers: {
+        'Square-Version': '2024-01-18',
+        'Authorization': `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    const locData = await locResp.json();
+    const locations = (locData.locations || []).map(function (l) {
+      return { name: l.name, id: l.id, status: l.status };
+    });
+
+    // Also fetch team members (Bookings needs Team Member Booking Profiles)
+    const teamResp = await fetch(`${BASE_URL}/v2/bookings/team-member-booking-profiles`, {
+      headers: {
+        'Square-Version': '2024-01-18',
+        'Authorization': `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    const teamData = await teamResp.json();
+    const teamMembers = (teamData.team_member_booking_profiles || []).map(function (t) {
+      return { display_name: t.display_name, team_member_id: t.team_member_id };
+    });
+
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(summary, null, 2)
+      body: JSON.stringify({ catalog: summary, locations: locations, teamMembers: teamMembers }, null, 2)
     };
   } catch (err) {
     return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
